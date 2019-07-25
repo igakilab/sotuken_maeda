@@ -25,8 +25,11 @@
       <p><font size="6">Done</font></p><br>
       </div>
    </div>
-    <img src="サイコロ.png" id="skill" class="skill" onclick="excalc();">
-    <span><img src="http://cthuwebdice.session.jp/wp-content/themes/cthuwebdice/img/6d.gif" onclick="ring();" alt=""></span>
+
+   <audio id="daicesound" preload="auto">
+   <source src="daicesound.wav" type="audio/wav" >
+</audio>
+    <span><img src="6d.gif" id="skill" class="skill" onclick="daice(); ring();" alt="" name="dice"></span>
    </div>
 
   <audio id="stbgm" preload="auto" autoplay loop>

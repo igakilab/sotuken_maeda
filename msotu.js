@@ -517,8 +517,12 @@ function clickgen(){
 $clickmai -= 2;
 }
 
-function ring() {
-  var el = document.getElementById('6d_01');
-  el.style.animationPlayState = 'running';
-
+function daice() {
+  var daice = new Object();
+  daice.num = eval(Math.floor(Math.random() * 5) + 1);
+  document.images['dice'].src = '6d_0' + daice.num + '.gif'
 }
+
+function ring() {
+			document.getElementById("daicesound").play();
+		}
