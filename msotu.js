@@ -1,6 +1,7 @@
 ﻿var clik = 0;
 var daiceme = 0;
-var task = 30;
+var task1 = 20;
+var log = [];
 
 /乱数で１～６の数字を生成しdaice.numに代入。数字に合ったgifを再生/
 function daice() {
@@ -21,10 +22,63 @@ function clikc(){
   clik=clik+1;
  }
 
-function disp(){
- task = task-daiceme;
-	window.alert('残り' + task+'です');
+ function disp(){
+  task1 = task1-daiceme;
+  daiceme = 0;
+  if(task1>0){
+    window.alert('残り' + task1+'です');
+  }
+ 	else {
+     window.alert('仕事は終わりました');
+   }
 
+ }
+
+
+function disp1(){
+  if(task1<=0){
+    window.alert('task1はDoneです');
+  }else if (task1<20) {
+    window.alert('task1はDoingです');
+  }else {
+    task1 = task1-daiceme;
+  daiceme = 0;
+  if(task1>0){
+    window.alert('残り' + task1+'です');
+  }
+ 	else {
+     window.alert('お疲れ様です.task1はDoneです');
+   }
+  }
 }
 
+function disp2(){
 
+  if(task1<=0){
+    window.alert('task1はDoneです');
+  }else if (task1==20) {
+    window.alert('task1はtodoです');
+  }else {
+    task1 = task1-daiceme;
+  daiceme = 0;
+  if(task1>0){
+    window.alert('残り' + task1+'です');
+  }
+  else {
+     window.alert('お疲れ様です.task1はDoneです');
+     window.alert(　clik　+"回で終わりました");
+
+   }
+  }
+}
+
+function disp3(){
+
+  if(task1<=0){
+    window.alert('task1はDoneです');
+  }else if (task1<20) {
+    window.alert('task1はDoingです');
+  }else {
+    window.alert('task1はtodoです');
+  }
+}

@@ -6,7 +6,7 @@
   <title>ゲーム画面</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="msotu.js"></script>
+  <script type="text/javascript" src="msotu.js"></script>
  </head>
  <body>
   <div class="cha">
@@ -14,18 +14,19 @@
    <div class="dai"><br>
    <p><font size="7"><center>ToDo</center></font></p><br>
    </div>
-   <p><input type="button" value="タスク" onClick="disp()"></p>
-
+   <p><input id="task1" type="button" value="task1" onClick="disp1()"></p>
    </div>
    <div class="Doing">
       <div class="dai"><br>
-      <p><font size="7">Doing</font></p><br>
+      <p><font size="7"><center>Doing</center></font></p><br>
       </div>
+      <p><input id="task1" type="button" value="task1" onClick="disp2()"></p>
    </div>
     <div class="Done">
       <div class="dai"><br>
-      <p><font size="6">Done</font></p><br>
+      <p><font size="7"><center>Done</center></font></p><br>
       </div>
+      <p><input id="task1" type="button" value="task1" onClick="disp3()"></p>
    </div>
 
    <audio id="daicesound" preload="auto">
