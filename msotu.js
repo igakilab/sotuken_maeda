@@ -7,7 +7,7 @@ var log = [];
 function daice() {
   clikc();
   var daice = new Object();
-  daice = eval(Math.floor(Math.random() * 5) + 1);
+  daice = eval(Math.floor(Math.random() * 6) + 1);
   daiceme = daice;
   document.images['dice'].src = '6d_0' + daice + '.gif'
 }
@@ -45,6 +45,7 @@ function disp1(){
   daiceme = 0;
   if(task1>0){
     window.alert('残り' + task1+'です');
+    document.images['dice'].src = '6d.gif'
   }
  	else {
      window.alert('お疲れ様です.task1はDoneです');
@@ -63,6 +64,7 @@ function disp2(){
   daiceme = 0;
   if(task1>0){
     window.alert('残り' + task1+'です');
+    document.images['dice'].src = '6d.gif'
   }
   else {
      window.alert('お疲れ様です.task1はDoneです');
