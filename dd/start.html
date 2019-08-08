@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+ <head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="stposition.css" type="text/css">
+  <title>ゲーム画面</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript" src="msotu.js"></script>
+ </head>
+ <body>
+  <div class="ToDo"id=droparea1>
+   <div class="dai"><br>
+   <p><font size="7"><center>ToDo</center></font></p><br>
+   </div>
+   <p><img id="task1"src="t1.jpg" onClick="disp();"width="150"height="100"></p>
+   </div>
+   <div class="Doing"id=droparea2>
+      <div class="dai"><br>
+      <p><font size="7"><center>Doing</center></font></p><br>
+      </div>
+   </div>
+    <div class="Done"id=droparea3>
+      <div class="dai"><br>
+      <p><font size="7"><center>Done</center></font></p><br>
+      </div>
+   </div>
+
+   <audio id="daicesound" preload="auto">
+   <source src="daicesound.wav" type="audio/wav" >
+</audio>
+    <span><img src="6d.gif" id="skill" class="skill" onclick="daice(); ring();" alt="" name="dice"></span>
+
+
+
+  <audio id="stbgm" preload="auto" autoplay loop>
+  <source src="stbgm.mp3"type="audio/mp3">
+  </audio>
+ </body>
+</html>
+
+<script>
+var task1 = document.getElementById( "task1" );
+var area1 = document.getElementById( "droparea1" );
+var area2 = document.getElementById( "droparea2" );
+var area3 = document.getElementById( "droparea3" );
+//ドラッグ開始時の処理
+task1.addEventListener( "dragstart" , function(evt){
+
+  //ドラッグ要素のidをdataTransferにセット
+  evt.dataTransfer.setData( "text/plain" , evt.target.id );
+  evt.stopPropagation();
+}, false );
+
+//ドロップされた時の処理
+area1.addEventListener( "drop" , function(evt){
+
+  //id名をdataTransferから取り出す
+  var id = evt.dataTransfer.getData( "text/plain" );
+
+  var obj1 = document.getElementById( id );
+  if( obj1 )
+  {
+    area1.appendChild( obj1 );  //要素を移動する
+  }
+
+  evt.preventDefault();
+}, false );
+
+//２つのイベントでデフォルト動作を抑制する
+area1.addEventListener( "dragenter" , function(evt){
+  evt.preventDefault();
+}, false );
+area1.addEventListener( "dragover" , function(evt){
+  evt.preventDefault();
+}, false );
+
+//ドロップされた時の処理
+area2.addEventListener( "drop" , function(evt){
+
+  //id名をdataTransferから取り出す
+  var id = evt.dataTransfer.getData( "text/plain" );
+
+  var obj2 = document.getElementById( id );
+  if( obj2 )
+  {
+    area2.appendChild( obj2 );  //要素を移動する
+  }
+
+  evt.preventDefault();
+}, false );
+
+//２つのイベントでデフォルト動作を抑制する
+area2.addEventListener( "dragenter" , function(evt){
+  evt.preventDefault();
+}, false );
+area2.addEventListener( "dragover" , function(evt){
+  evt.preventDefault();
+}, false );
+
+//ドロップされた時の処理
+area3.addEventListener( "drop" , function(evt){
+
+  //id名をdataTransferから取り出す
+  var id = evt.dataTransfer.getData( "text/plain" );
+
+  var obj3 = document.getElementById( id );
+  if( obj3 )
+  {
+    area3.appendChild( obj3 );  //要素を移動する
+  }
+
+  evt.preventDefault();
+}, false );
+
+//２つのイベントでデフォルト動作を抑制する
+area3.addEventListener( "dragenter" , function(evt){
+  evt.preventDefault();
+}, false );
+area3.addEventListener( "dragover" , function(evt){
+  evt.preventDefault();
+}, false );
+
+</script>
