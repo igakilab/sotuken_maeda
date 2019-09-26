@@ -9,11 +9,13 @@ var log = [];
 
 /乱数で１～６の数字を生成しdaice.numに代入。数字に合ったgifを再生/
 function daice() {
+  if(t3>0){
   clikc();
   var daice = new Object();
   daice = eval(Math.floor(Math.random() * 6) + 1);
   daiceme = daice;
   document.images['dice'].src = '6d_0' + daice + '.gif'
+}
 }
 
 /daicesoundを再生する/
