@@ -143,7 +143,7 @@ function clikc(){
        if(f2==1){
     if(num==1){
       if(t3<=0){
-        window.alert('task3はDoneです.Doneに移動してください');
+        window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
       }else if (t3<27) {
         window.alert('task3はDoingです.Doingに移動させてください');
       }else {
@@ -154,14 +154,14 @@ function clikc(){
         document.images['dice'].src = '6d.gif'
       }
      	else {
-         window.alert('お疲れ様です.task3をDoneに移動してください');
+         window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
        }
       }
     }
 
     if(num==2){
       if(t3<=0){
-        window.alert('task3はDoneです.Doneに移動してください');
+        window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
       }else if (t3==27) {
         window.alert('task3はToDoです.ToDoに移動させてください');
       }else {
@@ -172,14 +172,14 @@ function clikc(){
         document.images['dice'].src = '6d.gif'
       }
       else {
-         window.alert('お疲れ様です.task3をDoneに移動してください');
+         window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
        }
       }
     }
 
     if(num==3){
       if(t3<=0){
-        window.alert(　"task3はDoneです.");
+        window.alert(　"クリアおめでとう！！ スコアは"+clik　+"回です");
       }else if (t3<27) {
         window.alert('task3はDoingです.Doingに移動させてください');
       }else {
