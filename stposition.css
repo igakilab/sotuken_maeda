@@ -47,11 +47,17 @@
 .skill{
   position: absolute;
   top: 750px;
-  left: 45.5%;
+  left: 40.5%;
   cursor: pointer;
 }
 
 
+.skill1{
+  position: absolute;
+  top: 750px;
+  left: 50.5%;
+  cursor: pointer;
+}
 
 
 

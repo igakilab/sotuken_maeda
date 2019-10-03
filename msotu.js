@@ -51,7 +51,6 @@ function disp1(num) {
         document.images['dice1'].src = '6d.gif'
       } else {
         window.alert('お疲れ様です.task1をDoneに移動しましょう');
-        window.alert("次はtask2に取り組もう");
         f1 = 1;
       }
     }
@@ -71,7 +70,6 @@ function disp1(num) {
         document.images['dice1'].src = '6d.gif'
       } else {
         window.alert('お疲れ様です.task1をDoneに移動しましょう');
-        window.alert("次はtask2に取り組もう");
         f1 = 1;
       }
     }
@@ -108,7 +106,6 @@ function disp2(num, be) {
             document.images['dice1'].src = '6d.gif'
           } else {
             window.alert('お疲れ様です.task2をDoneに移動しましょう');
-            window.alert("次はtask3に取り組もう");
             f2 = 1;
           }
         }
@@ -128,7 +125,6 @@ function disp2(num, be) {
             document.images['dice1'].src = '6d.gif'
           } else {
             window.alert('お疲れ様です.task2をDoneに移動しましょう');
-            window.alert("次はtask3に取り組もう");
             f2 = 1;
           }
         }
