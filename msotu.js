@@ -21,7 +21,6 @@ function daice(e) {
   }
 }
 
-
 /daicesoundを再生する/
 
 function ring() {
@@ -203,4 +202,11 @@ function disp3(num, be) {
   } else {
     window.alert('task2をDoneに移動しましょう');
   }
+}
+
+
+
+function chance() {
+  let chance = Math.floor(Math.random() * 8) + 1;
+  document.images['card'].src = "e" + chance + ".jpg"
 }

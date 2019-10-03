@@ -59,7 +59,12 @@
   cursor: pointer;
 }
 
-
+.card{
+  position: absolute;
+  top: 700px;
+  left: 80%;
+  cursor: pointer;
+}
 
 
 
