@@ -66,8 +66,11 @@
   cursor: pointer;
 }
 
-
-
+.sukoa{
+position: absolute;
+top: 750px;
+font-size:50px;
+}
 
 
 
