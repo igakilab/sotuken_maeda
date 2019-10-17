@@ -11,7 +11,7 @@ let cf = 0;
 /乱数で１～６の数字を生成しdaice.numに代入。数字に合ったgifを再生/
 
 function daice(e) {
-  if (t3 > 0) {
+  if (daiceme == 0) {
     clikc();
     let daice = Math.floor(Math.random() * 6) + 1;
     document.images['dice'].src = '6d_0' + daice + '.gif'
