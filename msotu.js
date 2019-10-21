@@ -93,8 +93,6 @@ function disp1(num) {
 /タスク2をクリックしたときの処理/
 
 function disp2(num, be) {
-  if (be == 3) {
-    if (f1 == 1) {
       if (num == 1) {
         if (t2 <= 0) {
           window.alert('task2はDoneです.Doneに移動させてください');
@@ -132,19 +130,11 @@ function disp2(num, be) {
           window.alert('task2はToDoです.ToDoに移動させてください');
         }
       }
-    } else {
-      window.alert('先にtask1を終わらせましょう');
-    }
-  } else {
-    window.alert('task1をDoneに移動しましょう');
-  }
 }
 
 /タスク3をクリックしたときの処理/
 
 function disp3(num, be) {
-  if (be == 3) {
-    if (f2 == 1) {
       if (num == 1) {
         if (t3 <= 0) {
           window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
@@ -183,12 +173,6 @@ function disp3(num, be) {
           window.alert('task3はToDoです.ToDoに移動させてください');
         }
       }
-    } else {
-      window.alert('先にtask2を終わらせましょう');
-    }
-  } else {
-    window.alert('task2をDoneに移動しましょう');
-  }
 }
 
 
