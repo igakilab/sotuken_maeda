@@ -7,6 +7,19 @@ let f1 = 0;
 let f2 = 0;
 let log = [];
 let cf = 0;
+let pb = 0;
+
+function reset() {
+  document.images['dice'].src = '6d.gif'
+  document.images['dice1'].src = '6d.gif'
+  document.images['card'].src = "card.png"
+}
+
+function ploblem(){
+  if(pb==1){
+    document.images['task1'].src = 't1.jpg'
+  }
+}
 
 /乱数で１～６の数字を生成しdaice.numに代入。数字に合ったgifを再生/
 
@@ -32,7 +45,6 @@ function ring() {
 
 function clikc() {
   clik = clik + 1;
-  document.getElementById( "kaisu" ).innerHTML = clik;
 }
 
 /タスク1をクリックしたときの処理/
@@ -43,44 +55,24 @@ function disp1(num) {
       window.alert('task1はDoneです.Doneに移動させてください');
     } else if (t1 < 24) {
       window.alert('task1はDoingです.Doingに移動させてください');
-    } else {
-      t1 = t1 - daiceme;
-      daiceme = 0;
-      cf = 0;
-      if (t1 > 0) {
-        window.alert('残り' + t1 + 'です');
-        document.images['dice'].src = '6d.gif'
-        document.images['dice1'].src = '6d.gif'
-        document.images['card'].src = "card.png"
-      } else {
-        window.alert('お疲れ様です.task1をDoneに移動しましょう');
-        document.images['dice'].src = '6d.gif'
-        document.images['dice1'].src = '6d.gif'
-        document.images['card'].src = "card.png"
-        f1 = 1;
+    } else if (t1 > 0) {
+        document.getElementById( "task" ).innerHTML = t1;
       }
-    }
   }
 
   if (num == 2) {
     if (t1 <= 0) {
       window.alert('task1はDoneです.Doneに移動させてください');
-    } else if (t1 >= 24) {
-      window.alert('task1はToDoです.ToDoに移動させてください');
     } else {
       t1 = t1 - daiceme;
       daiceme = 0;
       cf = 0;
+      reset();
       if (t1 > 0) {
-        window.alert('残り' + t1 + 'です');
-        document.images['dice'].src = '6d.gif'
-        document.images['dice1'].src = '6d.gif'
-        document.images['card'].src = "card.png"
+        document.getElementById( "task" ).innerHTML = t1
       } else {
         window.alert('お疲れ様です.task1をDoneに移動しましょう');
-        document.images['dice'].src = '6d.gif'
-        document.images['dice1'].src = '6d.gif'
-        document.images['card'].src = "card.png"
+        document.getElementById( "task" ).innerHTML =0;
         f1 = 1;
       }
     }
@@ -108,44 +100,24 @@ function disp2(num, be) {
           window.alert('task2はDoneです.Doneに移動させてください');
         } else if (t2 < 21) {
           window.alert('task2はDoingです.Doingに移動させてください');
-        } else {
-          t2 = t2 - daiceme;
-          daiceme = 0;
-          cf = 0;
-          if (t2 > 0) {
-            window.alert('残り' + t2 + 'です');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
-          } else {
-            window.alert('お疲れ様です.task2をDoneに移動しましょう');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
-            f2 = 1;
+        } else if (t2 > 0) {
+            document.getElementById( "task" ).innerHTML = t2;
           }
-        }
       }
 
       if (num == 2) {
         if (t2 <= 0) {
           window.alert('task2はDoneです.Doneに移動させてください');
-        } else if (t2 >= 21) {
-          window.alert('task2はToDoです.ToDoに移動させてください');
         } else {
           t2 = t2 - daiceme;
           daiceme = 0;
           cf = 0;
+          reset();
           if (t2 > 0) {
-            window.alert('残り' + t2 + 'です');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
+            document.getElementById( "task" ).innerHTML = t2;
           } else {
             window.alert('お疲れ様です.task2をDoneに移動しましょう');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
+            document.getElementById( "task" ).innerHTML = 0;
             f2 = 1;
           }
         }
@@ -179,19 +151,8 @@ function disp3(num, be) {
         } else if (t3 < 27) {
           window.alert('task3はDoingです.Doingに移動させてください');
         } else {
-          t3 = t3 - daiceme;
-          daiceme = 0;
-          cf = 0;
           if (t3 > 0) {
-            window.alert('残り' + t3 + 'です');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
-          } else {
-            window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
+            document.getElementById( "task" ).innerHTML = t3;
           }
         }
       }
@@ -199,22 +160,16 @@ function disp3(num, be) {
       if (num == 2) {
         if (t3 <= 0) {
           window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
-        } else if (t3 >= 27) {
-          window.alert('task3はToDoです.ToDoに移動させてください');
         } else {
           t3 = t3 - daiceme;
           daiceme = 0;
           cf = 0;
+          reset();
           if (t3 > 0) {
-            window.alert('残り' + t3 + 'です');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
+            document.getElementById( "task" ).innerHTML = t3;
           } else {
             window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
-            document.images['dice'].src = '6d.gif'
-            document.images['dice1'].src = '6d.gif'
-            document.images['card'].src = "card.png"
+            document.getElementById( "task" ).innerHTML = 0;
           }
         }
       }
@@ -285,6 +240,9 @@ function event(c) {
    daiceme=daiceme + 4;
  }
 
+if(c==7){
+  document.images['task1'].src = 't1.1.jpg'
+}
 
  if (c==8){
   daiceme=daiceme/2;
