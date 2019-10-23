@@ -267,7 +267,7 @@ function event(c) {
   }
 
   if (c == 7) {
-    document.images['task1'].src = 't1.1.jpg'
+
   }
 
   if (c == 8) {
