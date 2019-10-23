@@ -46,8 +46,11 @@
   <audio id="daicesound" preload="auto">
     <source src="daicesound.wav" type="audio/wav">
   </audio>
-  <span><img src="6d.gif" id="skill" class="skill" onclick="daice(); ring();" alt="" name="dice"></span>
-  <span><img src="6d.gif" id="skill1" class="skill1" onclick="daice(); ring();" alt="" name="dice1"></span>
+  <audio id="clikcsound" preload="auto">
+    <source src="sound.mp3" type="audio/wav">
+  </audio>
+  <span><img src="6d.gif" id="skill" class="skill" onclick="daice();" alt="" name="dice"></span>
+  <span><img src="6d.gif" id="skill1" class="skill1" onclick="daice();" alt="" name="dice1"></span>
   <span><img src="card.png" id="card" class="card" onclick="chance();" width="300" height="200" name="card"></span>
   <p class="sukoa">　　タスク； <span id="task">0</span></p>
 
@@ -70,26 +73,26 @@
   let t3a = 1;
   //ドラッグ開始時の処理
   task1.addEventListener("dragstart", function(evt) {
-
+     if(select==1){
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/plain", evt.target.id);
-    evt.stopPropagation();
+    evt.stopPropagation();}
   }, false);
 
 
   task2.addEventListener("dragstart", function(evt) {
-
+   if(select==2){
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/plain", evt.target.id);
-    evt.stopPropagation();
+    evt.stopPropagation();}
   }, false);
 
 
   task3.addEventListener("dragstart", function(evt) {
-
+    if(select==3){
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/plain", evt.target.id);
-    evt.stopPropagation();
+    evt.stopPropagation();}
   }, false);
 
   //ドロップされた時の処理task1
@@ -185,7 +188,4 @@
   area3.addEventListener("dragover", function(evt) {
     evt.preventDefault();
   }, false);
-  //ここまでtask1
-  //ここからtask2
-  //ここまでtask2
 </script>
