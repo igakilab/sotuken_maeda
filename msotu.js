@@ -37,7 +37,9 @@ function ring() {
 
 
 function sound() {
+  if(daiceme>0){
   document.getElementById("clikcsound").play();
+}
 }
 
 
@@ -64,18 +66,18 @@ function disp1(num) {
     if (t1 <= 0) {
       window.alert('task1はDoneです.Doneに移動させてください');
     } else {
+      sound();
       t1 = t1 - daiceme;
       daiceme = 0;
       cf = 0;
       reset();
-      sound();
       if (t1 > 0) {
         document.getElementById("task").innerHTML = t1
         select = 1;
       } else {
         window.alert('お疲れ様です.task1をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
-        select = 0;
+        select = 1;
       }
     }
   }
@@ -109,18 +111,18 @@ function disp2(num, be) {
     if (t2 <= 0) {
       window.alert('task2はDoneです.Doneに移動させてください');
     } else {
+      sound();
       t2 = t2 - daiceme;
       daiceme = 0;
       cf = 0;
       reset();
-      sound();
       if (t2 > 0) {
         document.getElementById("task").innerHTML = t2;
         select = 2;
       } else {
         window.alert('お疲れ様です.task2をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
-        select = 0;
+        select = 2;
       }
     }
   }
@@ -156,18 +158,18 @@ function disp3(num, be) {
     if (t3 <= 0) {
       window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
     } else {
+      sound();
       t3 = t3 - daiceme;
       daiceme = 0;
       cf = 0;
       reset();
-      sound();
       if (t3 > 0) {
         document.getElementById("task").innerHTML = t3;
         select = 3;
       } else {
         window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
         document.getElementById("task").innerHTML = 0;
-        select = 0;
+        select = 3;
       }
     }
   }
