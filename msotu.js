@@ -35,7 +35,7 @@ function ring() {
   document.getElementById("daicesound").play();
 }
 
-
+//タスクが減ったときになるおと
 function sound() {
   if(daiceme>0){
   document.getElementById("clikcsound").play();
@@ -49,6 +49,27 @@ function clikc() {
 }
 
 
+//ストーリーを選択したときの画像変更
+function sentaku(z){
+  if(z==1){
+    document.images['task1'].src = 't1.1.jpg'
+    document.images['task2'].src = 't2.jpg'
+    document.images['task3'].src = 't3.jpg'
+  }
+  if(z==2){
+    document.images['task1'].src = 't1.jpg'
+    document.images['task2'].src = 't2.1.jpg'
+    document.images['task3'].src = 't3.jpg'
+  }
+  if(z==3){
+    document.images['task1'].src = 't1.jpg'
+    document.images['task2'].src = 't2.jpg'
+    document.images['task3'].src = 't3.1.jpg'
+  }
+}
+
+
+
 //タスク1をクリックしたときの処理
 function disp1(num) {
   if (num == 1) {
@@ -59,6 +80,8 @@ function disp1(num) {
     } else if (t1 > 0) {
       document.getElementById("task").innerHTML = t1;
       select = 1;
+      sentaku(select);
+
     }
   }
 
@@ -74,20 +97,22 @@ function disp1(num) {
       if (t1 > 0) {
         document.getElementById("task").innerHTML = t1
         select = 1;
+        sentaku(select);
       } else {
         window.alert('お疲れ様です.task1をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
         select = 1;
+        sentaku(select);
       }
     }
   }
   if (num == 3) {
     if (t1 <= 0) {
       window.alert('task1はDoneです');
-    } else if (t1 < 24) {
+    } else if (t1 <= 24) {
       window.alert('task1はDoingです.Doingに移動させてください');
-    } else {
-      window.alert('task1はToDoです.ToDoに移動させてください');
+      select = 1;
+      sentaku(select);
     }
   }
 
@@ -104,6 +129,7 @@ function disp2(num, be) {
     } else if (t2 > 0) {
       document.getElementById("task").innerHTML = t2;
       select = 2;
+      sentaku(select);
     }
   }
 
@@ -119,10 +145,12 @@ function disp2(num, be) {
       if (t2 > 0) {
         document.getElementById("task").innerHTML = t2;
         select = 2;
+        sentaku(select);
       } else {
         window.alert('お疲れ様です.task2をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
         select = 2;
+        sentaku(select);
       }
     }
   }
@@ -130,10 +158,10 @@ function disp2(num, be) {
   if (num == 3) {
     if (t2 <= 0) {
       window.alert('task2はDoneです');
-    } else if (t2 < 21) {
+    } else if (t2 <= 21) {
       window.alert('task2はDoingです.Doingに移動させてください');
-    } else {
-      window.alert('task2はToDoです.ToDoに移動させてください');
+      select = 2;
+      sentaku(select);
     }
   }
 }
@@ -150,6 +178,7 @@ function disp3(num, be) {
       if (t3 > 0) {
         document.getElementById("task").innerHTML = t3;
         select = 3;
+        sentaku(select);
       }
     }
   }
@@ -166,10 +195,12 @@ function disp3(num, be) {
       if (t3 > 0) {
         document.getElementById("task").innerHTML = t3;
         select = 3;
+        sentaku(select);
       } else {
         window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
         document.getElementById("task").innerHTML = 0;
         select = 3;
+        sentaku(select);
       }
     }
   }
@@ -177,10 +208,10 @@ function disp3(num, be) {
   if (num == 3) {
     if (t3 <= 0) {
       window.alert("クリアおめでとう！！ スコアは" + clik + "回です");
-    } else if (t3 < 27) {
+    } else if (t3 <= 27) {
       window.alert('task3はDoingです.Doingに移動させてください');
-    } else {
-      window.alert('task3はToDoです.ToDoに移動させてください');
+      select = 3;
+      sentaku(select);
     }
   }
 }
