@@ -284,15 +284,15 @@ function event(c) {
   }
 
   if (c == 3) {
-    if (f2 == 1) {
+    window.alert("doingにあるストーリーのタスクが元に戻ってしまった！！")
+    if (t3a == 2) {
       t3 = 27;
-      window.alert('タスクが27になりました ToDoに移動させてください');
-    } else if (f1 == 1) {
+    }
+    if (t2a == 2) {
       t2 = 21;
-      window.alert('タスクが21になりました ToDoに移動させてください');
-    } else {
+    }
+    if (t1a == 2) {
       t1 = 24;
-      window.alert('タスクが24になりました ToDoに移動させてください');
     }
   }
 
