@@ -72,28 +72,33 @@
   let t2a = 1;
   let t3a = 1;
   //ドラッグ開始時の処理
+
   task1.addEventListener("dragstart", function(evt) {
-     if(select==1){
-    //ドラッグ要素のidをdataTransferにセット
-    evt.dataTransfer.setData("text/plain", evt.target.id);
-    evt.stopPropagation();}
+    if (select == 1 && daiceme==0) {
+      //ドラッグ要素のidをdataTransferにセット
+      evt.dataTransfer.setData("text/plain", evt.target.id);
+      evt.stopPropagation();
+    }
   }, false);
 
 
   task2.addEventListener("dragstart", function(evt) {
-   if(select==2){
-    //ドラッグ要素のidをdataTransferにセット
-    evt.dataTransfer.setData("text/plain", evt.target.id);
-    evt.stopPropagation();}
+    if (select == 2 && daiceme==0) {
+      //ドラッグ要素のidをdataTransferにセット
+      evt.dataTransfer.setData("text/plain", evt.target.id);
+      evt.stopPropagation();
+    }
   }, false);
 
 
   task3.addEventListener("dragstart", function(evt) {
-    if(select==3){
-    //ドラッグ要素のidをdataTransferにセット
-    evt.dataTransfer.setData("text/plain", evt.target.id);
-    evt.stopPropagation();}
+    if (select == 3 && daiceme==0) {
+      //ドラッグ要素のidをdataTransferにセット
+      evt.dataTransfer.setData("text/plain", evt.target.id);
+      evt.stopPropagation();
+    }
   }, false);
+
 
   //ドロップされた時の処理task1
   area1.addEventListener("drop", function(evt) {

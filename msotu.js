@@ -4,7 +4,24 @@ let t1 = 24; //ストーリー1のタスク
 let t2 = 21; //ストーリー2のタスク
 let t3 = 27; //ストーリー3のタスク
 let cf = 0; //チャンスカードを引いているか判断
-let select = 0;//選択されているストーリー
+let select = 0; //選択されているストーリー
+let doing = 0;//doingにあるストーリーの数
+
+//doingにあるストーリーの数を数える
+function status() {
+  doing=0;
+  if(t1a==2){
+    doing+=1;
+  }
+  if(t2a==2){
+    doing+=1;
+  }
+  if(t3a==2){
+    doing+=1;
+  }
+}
+
+
 //ダイスの画像とチャンスカードの画像をデフォルトに戻す"
 function reset() {
   document.images['dice'].src = '6d.gif'
@@ -15,17 +32,42 @@ function reset() {
 
 //乱数で１～６の数字を生成しdaice.numに代入。数字に合ったgifを再生
 function daice(e) {
-  if(select == 0){
+  if (select == 0) {
     window.alert('storyを選択してください');
-  }else if (daiceme == 0) {
+  } else if (daiceme == 0) {
     clikc();
     ring();
+    status();
+    if(doing==3){
+      let daice = Math.floor(Math.random() * 2) + 1;
+      document.images['dice'].src = '6d_0' + daice + '.gif'
+
+      let daice1 = Math.floor(Math.random() * 2) + 1;
+      document.images['dice1'].src = '6d_0' + daice1 + '.gif'
+      daiceme = daice + daice1;
+      window.alert("サイコロが1/3になっています");
+    }
+    if(doing==2){
+      let daice = Math.floor(Math.random() * 4) + 1;
+      document.images['dice'].src = '6d_0' + daice + '.gif'
+
+      let daice1 = Math.floor(Math.random() * 4) + 1;
+      document.images['dice1'].src = '6d_0' + daice1 + '.gif'
+      daiceme = daice + daice1;
+      window.alert("サイコロが2/3になっています");
+    }
+    if(doing==1){
     let daice = Math.floor(Math.random() * 6) + 1;
     document.images['dice'].src = '6d_0' + daice + '.gif'
 
     let daice1 = Math.floor(Math.random() * 6) + 1;
     document.images['dice1'].src = '6d_0' + daice1 + '.gif'
     daiceme = daice + daice1;
+  }
+  if(doing==0){
+    window.alert("storyをDoingに移動してください");
+  }
+
   }
 }
 
@@ -37,9 +79,9 @@ function ring() {
 
 //タスクが減ったときになるおと
 function sound() {
-  if(daiceme>0){
-  document.getElementById("clikcsound").play();
-}
+  if (daiceme > 0) {
+    document.getElementById("clikcsound").play();
+  }
 }
 
 
@@ -50,18 +92,18 @@ function clikc() {
 
 
 //ストーリーを選択したときの画像変更
-function sentaku(z){
-  if(z==1){
+function sentaku(z) {
+  if (z == 1) {
     document.images['task1'].src = 't1.1.jpg'
     document.images['task2'].src = 't2.jpg'
     document.images['task3'].src = 't3.jpg'
   }
-  if(z==2){
+  if (z == 2) {
     document.images['task1'].src = 't1.jpg'
     document.images['task2'].src = 't2.1.jpg'
     document.images['task3'].src = 't3.jpg'
   }
-  if(z==3){
+  if (z == 3) {
     document.images['task1'].src = 't1.jpg'
     document.images['task2'].src = 't2.jpg'
     document.images['task3'].src = 't3.1.jpg'
