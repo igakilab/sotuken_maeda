@@ -117,8 +117,12 @@ function disp1(num) {
   if (num == 1) {
     if (t1 <= 0) {
       window.alert('task1はDoneです.Doneに移動させてください');
+      select = 1;
+      sentaku(select);
     } else if (t1 < 24) {
       window.alert('task1はDoingです.Doingに移動させてください');
+      select = 1;
+      sentaku(select);
     } else if (t1 > 0) {
       document.getElementById("task").innerHTML = t1;
       select = 1;
@@ -130,6 +134,11 @@ function disp1(num) {
   if (num == 2) {
     if (t1 <= 0) {
       window.alert('task1はDoneです.Doneに移動させてください');
+      select = 1;
+      daiceme = 0;
+      cf = 0;
+      reset();
+      sentaku(select);
     } else {
       sound();
       t1 = t1 - daiceme;
@@ -166,8 +175,12 @@ function disp2(num, be) {
   if (num == 1) {
     if (t2 <= 0) {
       window.alert('task2はDoneです.Doneに移動させてください');
+      select = 2;
+      sentaku(select);
     } else if (t2 < 21) {
       window.alert('task2はDoingです.Doingに移動させてください');
+      select = 2;
+      sentaku(select);
     } else if (t2 > 0) {
       document.getElementById("task").innerHTML = t2;
       select = 2;
@@ -178,6 +191,11 @@ function disp2(num, be) {
   if (num == 2) {
     if (t2 <= 0) {
       window.alert('task2はDoneです.Doneに移動させてください');
+      select = 2;
+      sentaku(select);
+      daiceme = 0;
+      cf = 0;
+      reset();
     } else {
       sound();
       t2 = t2 - daiceme;
@@ -214,8 +232,12 @@ function disp3(num, be) {
   if (num == 1) {
     if (t3 <= 0) {
       window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
+      select = 3;
+      sentaku(select);
     } else if (t3 < 27) {
       window.alert('task3はDoingです.Doingに移動させてください');
+      select = 3;
+      sentaku(select);
     } else {
       if (t3 > 0) {
         document.getElementById("task").innerHTML = t3;
@@ -228,6 +250,11 @@ function disp3(num, be) {
   if (num == 2) {
     if (t3 <= 0) {
       window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
+      select = 3;
+      sentaku(select);
+      daiceme = 0;
+      cf = 0;
+      reset();
     } else {
       sound();
       t3 = t3 - daiceme;
