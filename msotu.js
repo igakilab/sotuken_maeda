@@ -174,7 +174,7 @@ function disp1(num) {
 
 
 //タスク2をクリックしたときの処理
-function disp2(num, be) {
+function disp2(num) {
   if (num == 1) {
     if (t2 <= 0) {
       window.alert('task2はDoneです.Doneに移動させてください');
@@ -233,7 +233,7 @@ function disp2(num, be) {
 
 
 //タスク3をクリックしたときの処理
-function disp3(num, be) {
+function disp3(num) {
   if (num == 1) {
     if (t3 <= 0) {
       window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
