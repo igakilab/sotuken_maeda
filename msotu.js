@@ -6,6 +6,7 @@ let t3 = 27; //ストーリー3のタスク
 let cf = 0; //チャンスカードを引いているか判断
 let select = 0; //選択されているストーリー
 let doing = 0;//doingにあるストーリーの数
+let amari = 0;//タスクを減らしたときのあまり
 
 //doingにあるストーリーの数を数える
 function status() {
@@ -141,19 +142,21 @@ function disp1(num) {
       sentaku(select);
     } else {
       sound();
+      amari=daiceme-t1;
       t1 = t1 - daiceme;
       daiceme = 0;
       cf = 0;
-      reset();
       if (t1 > 0) {
         document.getElementById("task").innerHTML = t1
         select = 1;
         sentaku(select);
+        reset();
       } else {
         window.alert('お疲れ様です.task1をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
         select = 1;
         sentaku(select);
+        daiceme=amari;
       }
     }
   }
@@ -198,19 +201,21 @@ function disp2(num, be) {
       reset();
     } else {
       sound();
+      amari=daiceme-t2;
       t2 = t2 - daiceme;
       daiceme = 0;
       cf = 0;
-      reset();
       if (t2 > 0) {
         document.getElementById("task").innerHTML = t2;
         select = 2;
         sentaku(select);
+        reset();
       } else {
         window.alert('お疲れ様です.task2をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
         select = 2;
         sentaku(select);
+        daiceme = amari;
       }
     }
   }
@@ -257,17 +262,19 @@ function disp3(num, be) {
       reset();
     } else {
       sound();
+      amari=daiceme - t3;
       t3 = t3 - daiceme;
       daiceme = 0;
       cf = 0;
-      reset();
       if (t3 > 0) {
         document.getElementById("task").innerHTML = t3;
         select = 3;
         sentaku(select);
+        reset();
       } else {
         window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
         document.getElementById("task").innerHTML = 0;
+        daiceme=amari;
         select = 3;
         sentaku(select);
       }
@@ -324,7 +331,15 @@ function event(c) {
   }
 
   if (c == 4) {
-    daiceme = 1000;
+    if (t3a == 2) {
+      t3 = 0;
+    }
+    if (t2a == 2) {
+      t2 = 0;
+    }
+    if (t1a == 2) {
+      t1 = 0;
+    }
   }
 
   if (c == 5) {
