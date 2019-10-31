@@ -10,15 +10,15 @@ let amari = 0;//タスクを減らしたときのあまり
 
 //doingにあるストーリーの数を数える
 function status() {
-  doing=0;
-  if(t1a==2){
-    doing+=1;
+  doing = 0;
+  if (t1a == 2) {
+    doing += 1;
   }
-  if(t2a==2){
-    doing+=1;
+  if (t2a == 2) {
+    doing += 1;
   }
-  if(t3a==2){
-    doing+=1;
+  if (t3a == 2) {
+    doing += 1;
   }
 }
 
@@ -39,7 +39,7 @@ function daice(e) {
     clikc();
     ring();
     status();
-    if(doing==3){
+    if (doing == 3) {
       let daice = Math.floor(Math.random() * 2) + 1;
       document.images['dice'].src = '6d_0' + daice + '.gif'
 
@@ -48,7 +48,7 @@ function daice(e) {
       daiceme = daice + daice1;
       window.alert("サイコロが1/3になっています");
     }
-    if(doing==2){
+    if (doing == 2) {
       let daice = Math.floor(Math.random() * 4) + 1;
       document.images['dice'].src = '6d_0' + daice + '.gif'
 
@@ -57,17 +57,17 @@ function daice(e) {
       daiceme = daice + daice1;
       window.alert("サイコロが2/3になっています");
     }
-    if(doing==1){
-    let daice = Math.floor(Math.random() * 6) + 1;
-    document.images['dice'].src = '6d_0' + daice + '.gif'
+    if (doing == 1) {
+      let daice = Math.floor(Math.random() * 6) + 1;
+      document.images['dice'].src = '6d_0' + daice + '.gif'
 
-    let daice1 = Math.floor(Math.random() * 6) + 1;
-    document.images['dice1'].src = '6d_0' + daice1 + '.gif'
-    daiceme = daice + daice1;
-  }
-  if(doing==0){
-    window.alert("storyをDoingに移動してください");
-  }
+      let daice1 = Math.floor(Math.random() * 6) + 1;
+      document.images['dice1'].src = '6d_0' + daice1 + '.gif'
+      daiceme = daice + daice1;
+    }
+    if (doing == 0) {
+      window.alert("storyをDoingに移動してください");
+    }
 
   }
 }
@@ -142,7 +142,7 @@ function disp1(num) {
       sentaku(select);
     } else {
       sound();
-      amari=daiceme-t1;
+      amari = daiceme - t1;
       t1 = t1 - daiceme;
       daiceme = 0;
       cf = 0;
@@ -156,7 +156,7 @@ function disp1(num) {
         document.getElementById("task").innerHTML = 0;
         select = 1;
         sentaku(select);
-        daiceme=amari;
+        daiceme = amari;
       }
     }
   }
@@ -201,7 +201,7 @@ function disp2(num) {
       reset();
     } else {
       sound();
-      amari=daiceme-t2;
+      amari = daiceme - t2;
       t2 = t2 - daiceme;
       daiceme = 0;
       cf = 0;
@@ -262,7 +262,7 @@ function disp3(num) {
       reset();
     } else {
       sound();
-      amari=daiceme - t3;
+      amari = daiceme - t3;
       t3 = t3 - daiceme;
       daiceme = 0;
       cf = 0;
@@ -274,7 +274,7 @@ function disp3(num) {
       } else {
         window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
         document.getElementById("task").innerHTML = 0;
-        daiceme=amari;
+        daiceme = amari;
         select = 3;
         sentaku(select);
       }
