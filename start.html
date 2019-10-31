@@ -1,0 +1,200 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="stposition.css" type="text/css">
+  <title>ゲーム画面</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript" src="msotu.js"></script>
+</head>
+
+<body>
+  <div class="ToDo" id=droparea1>
+    <div class="dai"><br>
+      <p>
+        <font size="7">
+          <center>ToDo</center>
+        </font>
+      </p><br>
+    </div>
+    <p><img id="task1" src="t1.jpg" onClick="disp1(t1a);" width="250" height="150" name="task1"></p>
+    <p><img id="task2" src="t2.jpg" onClick="disp2(t2a);" width="250" height="150"></p>
+    <p><img id="task3" src="t3.jpg" onClick="disp3(t3a);" width="250" height="150"></p>
+  </div>
+  <div class="Doing" id=droparea2>
+    <div class="dai"><br>
+      <p>
+        <font size="7">
+          <center>Doing</center>
+        </font>
+      </p><br>
+    </div>
+  </div>
+  <div class="Done" id=droparea3>
+    <div class="dai"><br>
+      <p>
+        <font size="7">
+          <center>Done</center>
+        </font>
+      </p><br>
+    </div>
+  </div>
+
+
+  <audio id="daicesound" preload="auto">
+    <source src="daicesound.wav" type="audio/wav">
+  </audio>
+  <audio id="clikcsound" preload="auto">
+    <source src="sound.mp3" type="audio/wav">
+  </audio>
+  <span><img src="6d.gif" id="skill" class="skill" onclick="daice();" alt="" name="dice"></span>
+  <span><img src="6d.gif" id="skill1" class="skill1" onclick="daice();" alt="" name="dice1"></span>
+  <span><img src="card.png" id="card" class="card" onclick="chance();" width="300" height="200" name="card"></span>
+  <p class="sukoa">　　タスク； <span id="task">0</span></p>
+  <button type="button" name="aaa" value="aaa"
+    style=" width:400px;height:200px;position: absolute; left: 1100px; top: 910px">
+    <font size="500" color="#000000">END</font>
+  </button>
+
+  <audio id="stbgm" preload="auto" autoplay loop>
+    <source src="stbgm.mp3" type="audio/mp3">
+  </audio>
+</body>
+
+</html>
+
+<script>
+  let task1 = document.getElementById("task1");
+  let task2 = document.getElementById("task2");
+  let task3 = document.getElementById("task3");
+  let area1 = document.getElementById("droparea1");
+  let area2 = document.getElementById("droparea2");
+  let area3 = document.getElementById("droparea3");
+  let t1a = 1;
+  let t2a = 1;
+  let t3a = 1;
+  //ドラッグ開始時の処理
+
+  task1.addEventListener("dragstart", function (evt) {
+    if (select == 1 && daiceme == 0) {
+      //ドラッグ要素のidをdataTransferにセット
+      evt.dataTransfer.setData("text/plain", evt.target.id);
+      evt.stopPropagation();
+    }
+  }, false);
+
+
+  task2.addEventListener("dragstart", function (evt) {
+    if (select == 2 && daiceme == 0) {
+      //ドラッグ要素のidをdataTransferにセット
+      evt.dataTransfer.setData("text/plain", evt.target.id);
+      evt.stopPropagation();
+    }
+  }, false);
+
+
+  task3.addEventListener("dragstart", function (evt) {
+    if (select == 3 && daiceme == 0) {
+      //ドラッグ要素のidをdataTransferにセット
+      evt.dataTransfer.setData("text/plain", evt.target.id);
+      evt.stopPropagation();
+    }
+  }, false);
+
+
+  //ドロップされた時の処理task1
+  area1.addEventListener("drop", function (evt) {
+
+    //id名をdataTransferから取り出す
+    let id = evt.dataTransfer.getData("text/plain");
+
+    let obj1 = document.getElementById(id);
+    if (obj1) {
+      area1.appendChild(obj1); //要素を移動する
+      if (id == 'task1') {
+        t1a = 1;
+      }
+      if (id == 'task2') {
+        t2a = 1;
+      }
+      if (id == 'task3') {
+        t3a = 1;
+      }
+    }
+
+    evt.preventDefault();
+  }, false);
+
+  //２つのイベントでデフォルト動作を抑制する
+  area1.addEventListener("dragenter", function (evt) {
+    evt.preventDefault();
+  }, false);
+  area1.addEventListener("dragover", function (evt) {
+    evt.preventDefault();
+  }, false);
+
+  //ドロップされた時の処理
+  area2.addEventListener("drop", function (evt) {
+
+    //id名をdataTransferから取り出す
+    let id = evt.dataTransfer.getData("text/plain");
+
+    let obj2 = document.getElementById(id);
+    if (obj2) {
+      area2.appendChild(obj2); //要素を移動する
+      if (id == 'task1') {
+        t1a = 2;
+      }
+      if (id == 'task2') {
+        t2a = 2;
+      }
+      if (id == 'task3') {
+        t3a = 2;
+      }
+    }
+
+    evt.preventDefault();
+  }, false);
+
+  //２つのイベントでデフォルト動作を抑制する
+  area2.addEventListener("dragenter", function (evt) {
+    evt.preventDefault();
+  }, false);
+  area2.addEventListener("dragover", function (evt) {
+    evt.preventDefault();
+  }, false);
+
+
+  //ドロップされた時の処理
+  area3.addEventListener("drop", function (evt) {
+
+    //id名をdataTransferから取り出す
+    let id = evt.dataTransfer.getData("text/plain");
+
+    let obj3 = document.getElementById(id);
+    if (obj3) {
+      area3.appendChild(obj3); //要素を移動する
+      if (id == 'task1') {
+        t1a = 3;
+      }
+      if (id == 'task2') {
+        t2a = 3;
+      }
+      if (id == 'task3') {
+        t3a = 3;
+      }
+    }
+
+    evt.preventDefault();
+  }, false);
+
+  //２つのイベントでデフォルト動作を抑制する
+  area3.addEventListener("dragenter", function (evt) {
+    evt.preventDefault();
+  }, false);
+  area3.addEventListener("dragover", function (evt) {
+    evt.preventDefault();
+  }, false);
+</script>
