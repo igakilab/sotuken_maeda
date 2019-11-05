@@ -3,10 +3,12 @@ let daiceme = 0; //ダイスの目
 let t1 = 24; //ストーリー1のタスク
 let t2 = 21; //ストーリー2のタスク
 let t3 = 27; //ストーリー3のタスク
+let df = 0;
 let cf = 0; //チャンスカードを引いているか判断
 let select = 0; //選択されているストーリー
-let doing = 0;//doingにあるストーリーの数
-let amari = 0;//タスクを減らしたときのあまり
+let doing = 0; //doingにあるストーリーの数
+let amari = 0; //タスクを減らしたときのあまり
+let player = 1;
 
 //doingにあるストーリーの数を数える
 function status() {
@@ -34,8 +36,9 @@ function reset() {
 //乱数で１～６の数字を生成しdaice.numに代入。数字に合ったgifを再生
 function daice(e) {
   if (select == 0) {
-    window.alert('storyを選択してください');
-  } else if (daiceme == 0) {
+    document.getElementById("log").innerHTML = 'storyを選択してください';
+  } else if (df == 0) {
+    df=1;
     clikc();
     ring();
     status();
@@ -46,7 +49,7 @@ function daice(e) {
       let daice1 = Math.floor(Math.random() * 2) + 1;
       document.images['dice1'].src = '6d_0' + daice1 + '.gif'
       daiceme = daice + daice1;
-      window.alert("サイコロが1/3になっています");
+      document.getElementById("log").innerHTML = "サイコロが1/3になっています";
     }
     if (doing == 2) {
       let daice = Math.floor(Math.random() * 4) + 1;
@@ -55,7 +58,7 @@ function daice(e) {
       let daice1 = Math.floor(Math.random() * 4) + 1;
       document.images['dice1'].src = '6d_0' + daice1 + '.gif'
       daiceme = daice + daice1;
-      window.alert("サイコロが2/3になっています");
+      document.getElementById("log").innerHTML = "サイコロが2/3になっています";
     }
     if (doing == 1) {
       let daice = Math.floor(Math.random() * 6) + 1;
@@ -64,9 +67,10 @@ function daice(e) {
       let daice1 = Math.floor(Math.random() * 6) + 1;
       document.images['dice1'].src = '6d_0' + daice1 + '.gif'
       daiceme = daice + daice1;
+      document.getElementById("log").innerHTML = "";
     }
     if (doing == 0) {
-      window.alert("storyをDoingに移動してください");
+      document.getElementById("log").innerHTML = "storyをDoingに移動してください";
     }
 
   }
@@ -128,7 +132,6 @@ function disp1(num) {
       document.getElementById("task").innerHTML = t1;
       select = 1;
       sentaku(select);
-
     }
   }
 
@@ -137,29 +140,28 @@ function disp1(num) {
       window.alert('task1はDoneです.Doneに移動させてください');
       select = 1;
       daiceme = 0;
-      cf = 0;
-      reset();
       sentaku(select);
     } else {
       sound();
       amari = daiceme - t1;
       t1 = t1 - daiceme;
       daiceme = 0;
-      cf = 0;
       if (t1 > 0) {
         document.getElementById("task").innerHTML = t1
         select = 1;
         sentaku(select);
-        reset();
       } else {
         window.alert('お疲れ様です.task1をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
         select = 1;
         sentaku(select);
-        daiceme = amari;
+        status();
+        if(doing>1){
+          daiceme = amari;
       }
     }
   }
+}
   if (num == 3) {
     if (t1 <= 0) {
       window.alert('task1はDoneです');
@@ -197,25 +199,24 @@ function disp2(num) {
       select = 2;
       sentaku(select);
       daiceme = 0;
-      cf = 0;
-      reset();
     } else {
       sound();
       amari = daiceme - t2;
       t2 = t2 - daiceme;
       daiceme = 0;
-      cf = 0;
       if (t2 > 0) {
         document.getElementById("task").innerHTML = t2;
         select = 2;
         sentaku(select);
-        reset();
       } else {
         window.alert('お疲れ様です.task2をDoneに移動しましょう');
         document.getElementById("task").innerHTML = 0;
         select = 2;
         sentaku(select);
-        daiceme = amari;
+        status();
+        if(doing>1){
+          daiceme = amari;
+      }
       }
     }
   }
@@ -258,25 +259,24 @@ function disp3(num) {
       select = 3;
       sentaku(select);
       daiceme = 0;
-      cf = 0;
-      reset();
     } else {
       sound();
       amari = daiceme - t3;
       t3 = t3 - daiceme;
       daiceme = 0;
-      cf = 0;
       if (t3 > 0) {
         document.getElementById("task").innerHTML = t3;
         select = 3;
         sentaku(select);
-        reset();
       } else {
         window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
         document.getElementById("task").innerHTML = 0;
-        daiceme = amari;
         select = 3;
         sentaku(select);
+        status();
+        if(doing>1){
+          daiceme = amari;
+      }
       }
     }
   }
@@ -295,8 +295,8 @@ function disp3(num) {
 
 //チャンスカードのクリックしたときの動き
 function chance() {
-  if (daiceme == 0) {
-    window.alert('先にダイスを振りましょう');
+  if (df == 0) {
+    document.getElementById("log").innerHTML = '先にダイスを振りましょう';
   } else if (cf == 0) {
     let chance = Math.floor(Math.random() * 8) + 1;
     document.images['card'].src = "e" + chance + ".jpg"
@@ -357,4 +357,18 @@ function event(c) {
   if (c == 8) {
     daiceme = daiceme / 2;
   }
+}
+
+function end(){
+if(player==1){
+  player=2;
+  document.getElementById("player").innerHTML = 'player2の番です';
+}else{
+  player=1;
+  document.getElementById("player").innerHTML = 'player1の番です';
+}
+df=0;
+daiceme=0;
+cf=0;
+reset();
 }
