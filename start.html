@@ -20,10 +20,16 @@
         </font>
       </p><br>
     </div>
-    <img id="task1" src="t1.jpg" onClick="disp1(t1a);" width="250" height="150" name="task1">
-    <img id="task2" src="t2.jpg" onClick="disp2(t2a);" width="250" height="150">
-    <img id="task3" src="t3.jpg" onClick="disp3(t3a);" width="250" height="150">
+    <div class="note" id="task1"  draggable="true"  onClick="disp1(t1a);">
+          <p>画像無しで付箋紙</p>
+  </div>
 
+  <div class="note" id="task2" draggable="true" onClick="disp2(t2a);">
+        <p>画像無しで付箋紙dayo</p>
+</div>
+<div class="note" id="task3" draggable="true" onClick="disp3(t3a);">
+      <p>画像無しで付箋紙desune</p>
+</div>
   </div>
   <div class="Doing" id=droparea2>
     <div class="dai"><br>
@@ -65,135 +71,102 @@
 </html>
 
 <script>
-  let task1 = document.getElementById("task1");
-  let task2 = document.getElementById("task2");
-  let task3 = document.getElementById("task3");
-  let area1 = document.getElementById("droparea1");
-  let area2 = document.getElementById("droparea2");
-  let area3 = document.getElementById("droparea3");
-  let t1a = 1;
-  let t2a = 1;
-  let t3a = 1;
-  //ドラッグ開始時の処理
+let task1 = document.getElementById("task1");
+let task2 = document.getElementById("task2");
+let task3 = document.getElementById("task3");
+let area1 = document.getElementById("droparea1");
+let area2 = document.getElementById("droparea2");
+let area3 = document.getElementById("droparea3");
+let t1a = 1;
+let t2a = 1;
+let t3a = 1;
 
-  task1.addEventListener("dragstart", function(evt) {
-    if (select == 1 && daiceme==0) {
-      //ドラッグ要素のidをdataTransferにセット
-      evt.dataTransfer.setData("text/plain", evt.target.id);
-      evt.stopPropagation();
-    }
-  }, false);
+//ドラッグ開始時の処理
+task1.addEventListener( "dragstart" , function(evt){
 
+  //ドラッグ要素のidをdataTransferにセット
+  evt.dataTransfer.setData( "text/html" , evt.target.id );
+  evt.stopPropagation();
+}, false );
 
-  task2.addEventListener("dragstart", function(evt) {
-    if (select == 2 && daiceme==0) {
-      //ドラッグ要素のidをdataTransferにセット
-      evt.dataTransfer.setData("text/plain", evt.target.id);
-      evt.stopPropagation();
-    }
-  }, false);
+task2.addEventListener( "dragstart" , function(evt){
 
+  //ドラッグ要素のidをdataTransferにセット
+  evt.dataTransfer.setData( "text/html" , evt.target.id );
+  evt.stopPropagation();
+}, false );
 
-  task3.addEventListener("dragstart", function(evt) {
-    if (select == 3 && daiceme==0) {
-      //ドラッグ要素のidをdataTransferにセット
-      evt.dataTransfer.setData("text/plain", evt.target.id);
-      evt.stopPropagation();
-    }
-  }, false);
+task3.addEventListener( "dragstart" , function(evt){
 
+  //ドラッグ要素のidをdataTransferにセット
+  evt.dataTransfer.setData( "text/html" , evt.target.id );
+  evt.stopPropagation();
+}, false );
 
-  //ドロップされた時の処理task1
-  area1.addEventListener("drop", function(evt) {
+//ドロップされた時の処理
+area1.addEventListener( "drop" , function(evt){
 
-    //id名をdataTransferから取り出す
-    let id = evt.dataTransfer.getData("text/plain");
+  //id名をdataTransferから取り出す
+  var id = evt.dataTransfer.getData( "text/html" );
 
-    let obj1 = document.getElementById(id);
-    if (obj1) {
-      area1.appendChild(obj1); //要素を移動する
-      if (id == 'task1') {
-        t1a = 1;
-      }
-      if (id == 'task2') {
-        t2a = 1;
-      }
-      if (id == 'task3') {
-        t3a = 1;
-      }
-    }
+  var obj1 = document.getElementById( id );
+  if( obj1 )
+  {
+    area1.appendChild( obj1 );  //要素を移動する
+  }
 
-    evt.preventDefault();
-  }, false);
+  evt.preventDefault();
+}, false );
 
-  //２つのイベントでデフォルト動作を抑制する
-  area1.addEventListener("dragenter", function(evt) {
-    evt.preventDefault();
-  }, false);
-  area1.addEventListener("dragover", function(evt) {
-    evt.preventDefault();
-  }, false);
+area1.addEventListener( "dragenter" , function(evt){
+  evt.preventDefault();
+}, false );
+area1.addEventListener( "dragover" , function(evt){
+  evt.preventDefault();
+}, false );
 
-  //ドロップされた時の処理
-  area2.addEventListener("drop", function(evt) {
+area2.addEventListener( "drop" , function(evt){
 
-    //id名をdataTransferから取り出す
-    let id = evt.dataTransfer.getData("text/plain");
+  //id名をdataTransferから取り出す
+  var id = evt.dataTransfer.getData( "text/html" );
 
-    let obj2 = document.getElementById(id);
-    if (obj2) {
-      area2.appendChild(obj2); //要素を移動する
-      if (id == 'task1') {
-        t1a = 2;
-      }
-      if (id == 'task2') {
-        t2a = 2;
-      }
-      if (id == 'task3') {
-        t3a = 2;
-      }
-    }
+  var obj2 = document.getElementById( id );
+  if( obj2 )
+  {
+    area2.appendChild( obj2 );  //要素を移動する
+  }
 
-    evt.preventDefault();
-  }, false);
+  evt.preventDefault();
+}, false );
 
-  //２つのイベントでデフォルト動作を抑制する
-  area2.addEventListener("dragenter", function(evt) {
-    evt.preventDefault();
-  }, false);
-  area2.addEventListener("dragover", function(evt) {
-    evt.preventDefault();
-  }, false);
+//２つのイベントでデフォルト動作を抑制する
+area2.addEventListener( "dragenter" , function(evt){
+  evt.preventDefault();
+}, false );
+area2.addEventListener( "dragover" , function(evt){
+  evt.preventDefault();
+}, false );
 
 
-  //ドロップされた時の処理
-  area3.addEventListener("drop", function(evt) {
+area3.addEventListener( "drop" , function(evt){
 
-    //id名をdataTransferから取り出す
-    let id = evt.dataTransfer.getData("text/plain");
+  //id名をdataTransferから取り出す
+  var id = evt.dataTransfer.getData( "text/html" );
 
-    let obj3 = document.getElementById(id);
-    if (obj3) {
-      area3.appendChild(obj3); //要素を移動する
-      if (id == 'task1') {
-        t1a = 3;
-      }
-      if (id == 'task2') {
-        t2a = 3;
-      }
-      if (id == 'task3') {
-        t3a = 3;
-      }
-    }
+  var obj3 = document.getElementById( id );
+  if( obj3 )
+  {
+    area3.appendChild( obj3 );  //要素を移動する
+  }
 
-    evt.preventDefault();
-  }, false);
+  evt.preventDefault();
+}, false );
 
-  //２つのイベントでデフォルト動作を抑制する
-  area3.addEventListener("dragenter", function(evt) {
-    evt.preventDefault();
-  }, false);
-  area3.addEventListener("dragover", function(evt) {
-    evt.preventDefault();
-  }, false);
+//２つのイベントでデフォルト動作を抑制する
+area3.addEventListener( "dragenter" , function(evt){
+  evt.preventDefault();
+}, false );
+area3.addEventListener( "dragover" , function(evt){
+  evt.preventDefault();
+}, false );
 </script>
