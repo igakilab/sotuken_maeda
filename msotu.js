@@ -71,6 +71,7 @@ function daice(e) {
     }
     if (doing == 0) {
       document.getElementById("log").innerHTML = "storyをDoingに移動してください";
+      df=0;
     }
 
   }

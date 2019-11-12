@@ -21,14 +21,14 @@
       </p><br>
     </div>
     <div class="note" id="task1"  draggable="true"  onClick="disp1(t1a);">
-          <p>画像無しで付箋紙</p>
+          <p>story1<br>ユーザはあらかじめ指定した相手と、セキュアにメールを送受信できる。<br>24</p>
   </div>
 
   <div class="note" id="task2" draggable="true" onClick="disp2(t2a);">
-        <p>画像無しで付箋紙dayo</p>
+        <p>story2<br>ユーザは大きなファイルをセキュアに送信できる。<br>21</p>
 </div>
 <div class="note" id="task3" draggable="true" onClick="disp3(t3a);">
-      <p>画像無しで付箋紙desune</p>
+      <p>story3<br>ユーザは送ったメールに読み取り期限を設定できる。<br>27</p>
 </div>
   </div>
   <div class="Doing" id=droparea2>
@@ -89,12 +89,14 @@ task1.addEventListener( "dragstart" , function(evt){
   evt.stopPropagation();
 }, false );
 
+
 task2.addEventListener( "dragstart" , function(evt){
 
   //ドラッグ要素のidをdataTransferにセット
   evt.dataTransfer.setData( "text/html" , evt.target.id );
   evt.stopPropagation();
 }, false );
+
 
 task3.addEventListener( "dragstart" , function(evt){
 
@@ -103,9 +105,9 @@ task3.addEventListener( "dragstart" , function(evt){
   evt.stopPropagation();
 }, false );
 
+
 //ドロップされた時の処理
 area1.addEventListener( "drop" , function(evt){
-
   //id名をdataTransferから取り出す
   var id = evt.dataTransfer.getData( "text/html" );
 
@@ -113,6 +115,16 @@ area1.addEventListener( "drop" , function(evt){
   if( obj1 )
   {
     area1.appendChild( obj1 );  //要素を移動する
+    if(id=='task1'){
+      t1a=1;
+    }
+    if(id=='task2'){
+      t2a=1;
+    }
+    if(id=='task3'){
+      t3a=1;
+    }
+
   }
 
   evt.preventDefault();
@@ -125,6 +137,9 @@ area1.addEventListener( "dragover" , function(evt){
   evt.preventDefault();
 }, false );
 
+
+
+
 area2.addEventListener( "drop" , function(evt){
 
   //id名をdataTransferから取り出す
@@ -134,6 +149,15 @@ area2.addEventListener( "drop" , function(evt){
   if( obj2 )
   {
     area2.appendChild( obj2 );  //要素を移動する
+    if(id=='task1'){
+      t1a=2;
+    }
+    if(id=='task2'){
+      t2a=2;
+    }
+    if(id=='task3'){
+      t3a=2;
+    }
   }
 
   evt.preventDefault();
@@ -148,6 +172,10 @@ area2.addEventListener( "dragover" , function(evt){
 }, false );
 
 
+
+
+
+
 area3.addEventListener( "drop" , function(evt){
 
   //id名をdataTransferから取り出す
@@ -157,6 +185,15 @@ area3.addEventListener( "drop" , function(evt){
   if( obj3 )
   {
     area3.appendChild( obj3 );  //要素を移動する
+    if(id=='task1'){
+      t1a=3;
+    }
+    if(id=='task2'){
+      t2a=3;
+    }
+    if(id=='task3'){
+      t3a=3;
+    }
   }
 
   evt.preventDefault();
