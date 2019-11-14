@@ -3,12 +3,34 @@ let daiceme = 0; //ダイスの目
 let t1 = 24; //ストーリー1のタスク
 let t2 = 21; //ストーリー2のタスク
 let t3 = 27; //ストーリー3のタスク
+let t4 = 27; //ストーリー4のタスク
+let t5 = 27; //ストーリー5のタスク
+let t6 = 27; //ストーリー6のタスク
+let t7 = 27; //ストーリー7のタスク
+let t8 = 27; //ストーリー8のタスク
+let t9 = 27; //ストーリー9のタスク
+let t10 = 27; //ストーリー10のタスク
 let df = 0;
 let cf = 0; //チャンスカードを引いているか判断
 let select = 0; //選択されているストーリー
 let doing = 0; //doingにあるストーリーの数
 let amari = 0; //タスクを減らしたときのあまり
 let player = 1;
+
+
+//起動時ストーリーカードに文字を挿入する
+function insert() {
+  document.getElementById("card1").innerHTML = "ユーザはあらかじめ指定した相手と、セキュアにメールを送受信できる。";
+  document.getElementById("card2").innerHTML = "ユーザは大きなファイルをセキュアに送信できる。";
+  document.getElementById("card3").innerHTML = "ユーザは送ったメールに読み取り期限を設定できる。";
+  document.getElementById("card4").innerHTML = "ユーザは不特定の相手にセキュアにメールを送信できる。";
+  document.getElementById("card5").innerHTML = "管理者はメールを無視できる。";
+  document.getElementById("card6").innerHTML = "管理者は組織ごとにセキュリティポリシーと受信者グループを管理できる。";
+  document.getElementById("card7").innerHTML = "ユーザはメールを効果的に管理できる。";
+  document.getElementById("card8").innerHTML = "ユーザと管理者はメールをセキュアにバックアップできる。";
+  document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。";
+  document.getElementById("card10").innerHTML = "ユーザはモバイル機器からメールを利用できる。";
+}
 
 //doingにあるストーリーの数を数える
 function status() {
@@ -38,7 +60,7 @@ function daice(e) {
   if (select == 0) {
     document.getElementById("log").innerHTML = 'storyを選択してください';
   } else if (df == 0) {
-    df=1;
+    df = 1;
     clikc();
     ring();
     status();
@@ -71,7 +93,7 @@ function daice(e) {
     }
     if (doing == 0) {
       document.getElementById("log").innerHTML = "storyをDoingに移動してください";
-      df=0;
+      df = 0;
     }
 
   }
@@ -157,12 +179,12 @@ function disp1(num) {
         select = 1;
         sentaku(select);
         status();
-        if(doing>1){
+        if (doing > 1) {
           daiceme = amari;
+        }
       }
     }
   }
-}
   if (num == 3) {
     if (t1 <= 0) {
       window.alert('task1はDoneです');
@@ -215,9 +237,9 @@ function disp2(num) {
         select = 2;
         sentaku(select);
         status();
-        if(doing>1){
+        if (doing > 1) {
           daiceme = amari;
-      }
+        }
       }
     }
   }
@@ -275,9 +297,9 @@ function disp3(num) {
         select = 3;
         sentaku(select);
         status();
-        if(doing>1){
+        if (doing > 1) {
           daiceme = amari;
-      }
+        }
       }
     }
   }
@@ -360,16 +382,16 @@ function event(c) {
   }
 }
 
-function end(){
-if(player==1){
-  player=2;
-  document.getElementById("player").innerHTML = 'player2の番です';
-}else{
-  player=1;
-  document.getElementById("player").innerHTML = 'player1の番です';
-}
-df=0;
-daiceme=0;
-cf=0;
-reset();
+function end() {
+  if (player == 1) {
+    player = 2;
+    document.getElementById("player").innerHTML = 'player2の番です';
+  } else {
+    player = 1;
+    document.getElementById("player").innerHTML = 'player1の番です';
+  }
+  df = 0;
+  daiceme = 0;
+  cf = 0;
+  reset();
 }
