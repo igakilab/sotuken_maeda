@@ -71,6 +71,7 @@ function daice(e) {
     }
     if (doing == 0) {
       document.getElementById("log").innerHTML = "storyをDoingに移動してください";
+      df=0;
     }
 
   }
@@ -99,19 +100,19 @@ function clikc() {
 //ストーリーを選択したときの画像変更
 function sentaku(z) {
   if (z == 1) {
-    document.images['task1'].src = 't1.1.jpg'
-    document.images['task2'].src = 't2.jpg'
-    document.images['task3'].src = 't3.jpg'
+    document.getElementById("task1").className = "active-note";
+    document.getElementById("task2").className = "note";
+    document.getElementById("task3").className = "note";
   }
   if (z == 2) {
-    document.images['task1'].src = 't1.jpg'
-    document.images['task2'].src = 't2.1.jpg'
-    document.images['task3'].src = 't3.jpg'
+    document.getElementById("task1").className = "note";
+    document.getElementById("task2").className = "active-note";
+    document.getElementById("task3").className = "note";
   }
   if (z == 3) {
-    document.images['task1'].src = 't1.jpg'
-    document.images['task2'].src = 't2.jpg'
-    document.images['task3'].src = 't3.1.jpg'
+    document.getElementById("task1").className = "note";
+    document.getElementById("task2").className = "note";
+    document.getElementById("task3").className = "active-note";
   }
 }
 
