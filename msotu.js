@@ -18,16 +18,16 @@ let player = 1;
 
 //起動時ストーリーカードに文字を挿入する
 function insert() {
-  document.getElementById("card1").innerHTML = "ユーザはあらかじめ指定した相手と、セキュアにメールを送受信できる。";
-  document.getElementById("card2").innerHTML = "ユーザは大きなファイルをセキュアに送信できる。";
-  document.getElementById("card3").innerHTML = "ユーザは送ったメールに読み取り期限を設定できる。";
-  document.getElementById("card4").innerHTML = "ユーザは不特定の相手にセキュアにメールを送信できる。";
-  document.getElementById("card5").innerHTML = "管理者はメールを無視できる。";
-  document.getElementById("card6").innerHTML = "管理者は組織ごとにセキュリティポリシと受信グループを管理できる。";
-  document.getElementById("card7").innerHTML = "ユーザはメールを効果的に管理できる。";
-  document.getElementById("card8").innerHTML = "ユーザと管理者はメールをセキュアにバックアップできる。";
-  document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。";
-  document.getElementById("card10").innerHTML = "ユーザはモバイル機器からメールを利用できる。";
+  document.getElementById("card1").innerHTML = "ユーザはあらかじめ指定した相手と、セキュアにメールを送受信できる。<br>"+task[1];
+  document.getElementById("card2").innerHTML = "ユーザは大きなファイルをセキュアに送信できる。<br>"+task[2];
+  document.getElementById("card3").innerHTML = "ユーザは送ったメールに読み取り期限を設定できる。<br>"+task[3];
+  document.getElementById("card4").innerHTML = "ユーザは不特定の相手にセキュアにメールを送信できる。<br>"+task[4];
+  document.getElementById("card5").innerHTML = "管理者はメールを無視できる。<br>"+task[5];
+  document.getElementById("card6").innerHTML = "管理者は組織ごとにセキュリティポリシと受信グループを管理できる。<br>"+task[6];
+  document.getElementById("card7").innerHTML = "ユーザはメールを効果的に管理できる。<br>"+task[7];
+  document.getElementById("card8").innerHTML = "ユーザと管理者はメールをセキュアにバックアップできる。<br>"+task[8];
+  document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。<br>"+task[9];
+  document.getElementById("card10").innerHTML = "ユーザはモバイル機器からメールを利用できる。<br>"+task[10];
 }
 
 //doingにあるストーリーの数を数える
@@ -125,186 +125,6 @@ function sentaku(z) {
     document.getElementById("task"+z).className = "player2-note";
 }
 }
-
-
-
-
-//タスク1をクリックしたときの処理
-function disp1(num) {
-  if (num == 1) {
-    if (t1 <= 0) {
-      window.alert('task1はDoneです.Doneに移動させてください');
-      select = 1;
-      sentaku(select);
-    } else if (t1 < 24) {
-      window.alert('task1はDoingです.Doingに移動させてください');
-      select = 1;
-      sentaku(select);
-    } else if (t1 > 0) {
-      document.getElementById("task").innerHTML = t1;
-      select = 1;
-      sentaku(select);
-    }
-  }
-
-  if (num == 2) {
-    if (t1 <= 0) {
-      window.alert('task1はDoneです.Doneに移動させてください');
-      select = 1;
-      daiceme = 0;
-      sentaku(select);
-    } else {
-      sound();
-      amari = daiceme - t1;
-      t1 = t1 - daiceme;
-      daiceme = 0;
-      if (t1 > 0) {
-        document.getElementById("task").innerHTML = t1
-        select = 1;
-        sentaku(select);
-      } else {
-        window.alert('お疲れ様です.task1をDoneに移動しましょう');
-        document.getElementById("task").innerHTML = 0;
-        select = 1;
-        sentaku(select);
-        status();
-        if (doing > 1) {
-          daiceme = amari;
-        }
-      }
-    }
-  }
-  if (num == 3) {
-    if (t1 <= 0) {
-      window.alert('task1はDoneです');
-    } else if (t1 <= 24) {
-      window.alert('task1はDoingです.Doingに移動させてください');
-      select = 1;
-      sentaku(select);
-    }
-  }
-
-}
-
-
-//タスク2をクリックしたときの処理
-function disp2(num) {
-  if (num == 1) {
-    if (t2 <= 0) {
-      window.alert('task2はDoneです.Doneに移動させてください');
-      select = 2;
-      sentaku(select);
-    } else if (t2 < 21) {
-      window.alert('task2はDoingです.Doingに移動させてください');
-      select = 2;
-      sentaku(select);
-    } else if (t2 > 0) {
-      document.getElementById("task").innerHTML = t2;
-      select = 2;
-      sentaku(select);
-    }
-  }
-
-  if (num == 2) {
-    if (t2 <= 0) {
-      window.alert('task2はDoneです.Doneに移動させてください');
-      select = 2;
-      sentaku(select);
-      daiceme = 0;
-    } else {
-      sound();
-      amari = daiceme - t2;
-      t2 = t2 - daiceme;
-      daiceme = 0;
-      if (t2 > 0) {
-        document.getElementById("task").innerHTML = t2;
-        select = 2;
-        sentaku(select);
-      } else {
-        window.alert('お疲れ様です.task2をDoneに移動しましょう');
-        document.getElementById("task").innerHTML = 0;
-        select = 2;
-        sentaku(select);
-        status();
-        if (doing > 1) {
-          daiceme = amari;
-        }
-      }
-    }
-  }
-
-  if (num == 3) {
-    if (t2 <= 0) {
-      window.alert('task2はDoneです');
-    } else if (t2 <= 21) {
-      window.alert('task2はDoingです.Doingに移動させてください');
-      select = 2;
-      sentaku(select);
-    }
-  }
-}
-
-
-//タスク3をクリックしたときの処理
-function disp3(num) {
-  if (num == 1) {
-    if (t3 <= 0) {
-      window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
-      select = 3;
-      sentaku(select);
-    } else if (t3 < 27) {
-      window.alert('task3はDoingです.Doingに移動させてください');
-      select = 3;
-      sentaku(select);
-    } else {
-      if (t3 > 0) {
-        document.getElementById("task").innerHTML = t3;
-        select = 3;
-        sentaku(select);
-      }
-    }
-  }
-
-  if (num == 2) {
-    if (t3 <= 0) {
-      window.alert('task3はDoneです.Doneに移動してもう一度クリックしてください');
-      select = 3;
-      sentaku(select);
-      daiceme = 0;
-    } else {
-      sound();
-      amari = daiceme - t3;
-      t3 = t3 - daiceme;
-      daiceme = 0;
-      if (t3 > 0) {
-        document.getElementById("task").innerHTML = t3;
-        select = 3;
-        sentaku(select);
-      } else {
-        window.alert('お疲れ様です.task3をDoneに移動してもう一度クリックしてください');
-        document.getElementById("task").innerHTML = 0;
-        select = 3;
-        sentaku(select);
-        status();
-        if (doing > 1) {
-          daiceme = amari;
-        }
-      }
-    }
-  }
-
-  if (num == 3) {
-    if (t3 <= 0) {
-      window.alert("クリアおめでとう！！ スコアは" + clik + "回です");
-    } else if (t3 <= 27) {
-      window.alert('task3はDoingです.Doingに移動させてください');
-      select = 3;
-      sentaku(select);
-    }
-  }
-}
-
-
 //チャンスカードのクリックしたときの動き
 function chance() {
   if (df == 0) {
@@ -332,26 +152,29 @@ function event(c) {
   if (c == 3) {
     window.alert("doingにあるストーリーのタスクが元に戻ってしまった！！")
     if (t3a == 2) {
-      t3 = 27;
+      task[3] = 27;
     }
     if (t2a == 2) {
-      t2 = 21;
+      task[2] = 21;
     }
     if (t1a == 2) {
-      t1 = 24;
+      task[1] = 24;
     }
+    insert();
   }
 
   if (c == 4) {
     if (t3a == 2) {
-      t3 = 0;
+      task[3] = 0;
     }
     if (t2a == 2) {
-      t2 = 0;
+      task[2] = 0;
     }
     if (t1a == 2) {
-      t1 = 0;
+      task[1] = 0;
     }
+    daiceme=0;
+    insert();
   }
 
   if (c == 5) {
@@ -371,6 +194,7 @@ function event(c) {
   }
 }
 
+//endボタンを押したときの処理
 function end() {
   if (player == 1) {
     player = 2;
@@ -384,7 +208,7 @@ function end() {
   cf = 0;
   reset();
 }
-
+//ストーリーをクリックしたときの処理
 function disp(num,max,name,s) {
   select=s;
   if (num == 1) {
@@ -432,8 +256,10 @@ function disp(num,max,name,s) {
       sentaku(select);
     }
   }
+  insert();
 }
 
+//ドロップしたところを登録する処理
 function drop(num,id){
   if(id=='task1'){
     t1a=num;
