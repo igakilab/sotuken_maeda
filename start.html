@@ -217,6 +217,9 @@
 
   area2.addEventListener("drop", function (evt) {
 
+　　status();
+    if(doing<3){
+
     //id名をdataTransferから取り出す
     let id = evt.dataTransfer.getData("text/html");
 
@@ -227,7 +230,7 @@
     }
 
     evt.preventDefault();
-  }, false);
+  }}, false);
 
   //２つのイベントでデフォルト動作を抑制する
   area2.addEventListener("dragenter", function (evt) {
