@@ -20,43 +20,43 @@
       </p><br>
     </div>
 
-    <div class="note" id="task1" draggable="true" onClick="disp(t1a,24,'task1',1);">
+    <div class="note" id="task1" draggable="true" onClick="disp(taskarea[1],taskmax[1],'task1',1);">
       <p>story1<br><span id="card1"></span></p>
     </div>
 
-    <div class="note" id="task2" draggable="true" onClick="disp(t2a,21,'task2',2);">
+    <div class="note" id="task2" draggable="true" onClick="disp(taskarea[2],taskmax[2],'task2',2);">
       <p>story2<br><span id="card2"></span></p>
     </div>
 
-    <div class="note" id="task3" draggable="true" onClick="disp(t3a,27,'task3',3);">
+    <div class="note" id="task3" draggable="true" onClick="disp(taskarea[3],taskmax[3],'task3',3);">
       <p>story3<br><span id="card3"></span></p>
     </div>
 
-    <div class="note" id="task4" draggable="true" onClick="disp(t4a,24,'task4',4);">
+    <div class="note" id="task4" draggable="true" onClick="disp(taskarea[4],taskmax[4],'task4',4);">
       <p>story4<br><span id="card4"></span></p>
     </div>
 
-    <div class="note" id="task5" draggable="true" onClick="disp(t5a,24,'task5',5);">
+    <div class="note" id="task5" draggable="true" onClick="disp(taskarea[5],taskmax[5],'task5',5);">
       <p>story5<br><span id="card5"></span></p>
     </div>
 
-    <div class="note" id="task6" draggable="true" onClick="disp(t6a,24,'task6',6);">
+    <div class="note" id="task6" draggable="true" onClick="disp(taskarea[6],taskmax[6],'task6',6);">
       <p>story6<br><span id="card6"></span></p>
     </div>
 
-    <div class="note" id="task7" draggable="true" onClick="disp(t7a,24,'task7',7);">
+    <div class="note" id="task7" draggable="true" onClick="disp(taskarea[7],taskmax[7],'task7',7);">
       <p>story7<br><span id="card7"></span></p>
     </div>
 
-    <div class="note" id="task8" draggable="true" onClick="disp(t8a,24,'task8',8);">
+    <div class="note" id="task8" draggable="true" onClick="disp(taskarea[8],taskmax[8],'task8',8);">
       <p>story8<br><span id="card8"></span></p>
     </div>
 
-    <div class="note" id="task9" draggable="true" onClick="disp(t9a,24,'task9',9);">
+    <div class="note" id="task9" draggable="true" onClick="disp(taskarea[9],taskmax[9],'task9',9);">
       <p>story9<br><span id="card9"></span></p>
     </div>
 
-    <div class="note" id="task10" draggable="true" onClick="disp(t10a,24,'task10',10);">
+    <div class="note" id="task10" draggable="true" onClick="disp(taskarea[10],taskmax[10],'task10',10);">
       <p>story10<br><span id="card10"></span></p>
     </div>
 
@@ -117,16 +117,6 @@
   let area1 = document.getElementById("droparea1");
   let area2 = document.getElementById("droparea2");
   let area3 = document.getElementById("droparea3");
-  let t1a = 1;
-  let t2a = 1;
-  let t3a = 1;
-  let t4a = 1;
-  let t5a = 1;
-  let t6a = 1;
-  let t7a = 1;
-  let t8a = 1;
-  let t9a = 1;
-  let t10a = 1;
 
   //ドラッグ開始時の処理
   task1.addEventListener("dragstart", function (evt) {
@@ -204,9 +194,9 @@
   //ドロップされた時の処理
   area1.addEventListener("drop", function (evt) {
     //id名をdataTransferから取り出す
-    var id = evt.dataTransfer.getData("text/html");
+    let id = evt.dataTransfer.getData("text/html");
 
-    var obj1 = document.getElementById(id);
+    let obj1 = document.getElementById(id);
     if (obj1) {
       area1.appendChild(obj1);  //要素を移動する
       drop(1,id);
@@ -228,9 +218,9 @@
   area2.addEventListener("drop", function (evt) {
 
     //id名をdataTransferから取り出す
-    var id = evt.dataTransfer.getData("text/html");
+    let id = evt.dataTransfer.getData("text/html");
 
-    var obj2 = document.getElementById(id);
+    let obj2 = document.getElementById(id);
     if (obj2) {
       area2.appendChild(obj2);  //要素を移動する
       drop(2,id);
@@ -255,9 +245,9 @@
   area3.addEventListener("drop", function (evt) {
 
     //id名をdataTransferから取り出す
-    var id = evt.dataTransfer.getData("text/html");
+    let id = evt.dataTransfer.getData("text/html");
 
-    var obj3 = document.getElementById(id);
+    let obj3 = document.getElementById(id);
     if (obj3) {
       area3.appendChild(obj3);  //要素を移動する
    drop(3,id);

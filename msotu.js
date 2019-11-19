@@ -1,13 +1,8 @@
 let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
 let task = [0,24,21,27,24,24,24,24,24,24,24];//ストーリーのタスク
-let t4 = 27; //ストーリー4のタスク
-let t5 = 27; //ストーリー5のタスク
-let t6 = 27; //ストーリー6のタスク
-let t7 = 27; //ストーリー7のタスク
-let t8 = 27; //ストーリー8のタスク
-let t9 = 27; //ストーリー9のタスク
-let t10 = 27; //ストーリー10のタスク
+let taskmax = [0,24,21,27,24,24,24,24,24,24,24]
+let taskarea = [0,1,1,1,1,1,1,1,1,1,1];
 let df = 0;
 let cf = 0; //チャンスカードを引いているか判断
 let select = 0; //選択されているストーリー
@@ -18,6 +13,10 @@ let player = 1;
 
 //起動時ストーリーカードに文字を挿入する
 function insert() {
+  for(let i=1;i<11;i++){
+  if(task[i]<0){
+    task[i]=0;
+  }}
   document.getElementById("card1").innerHTML = "ユーザはあらかじめ指定した相手と、セキュアにメールを送受信できる。<br>"+task[1];
   document.getElementById("card2").innerHTML = "ユーザは大きなファイルをセキュアに送信できる。<br>"+task[2];
   document.getElementById("card3").innerHTML = "ユーザは送ったメールに読み取り期限を設定できる。<br>"+task[3];
@@ -33,15 +32,11 @@ function insert() {
 //doingにあるストーリーの数を数える
 function status() {
   doing = 0;
-  if (t1a == 2) {
-    doing += 1;
+for(let i=1;i<11;i++){
+  if(taskarea[i] == 2){
+    doing++;
   }
-  if (t2a == 2) {
-    doing += 1;
-  }
-  if (t3a == 2) {
-    doing += 1;
-  }
+}
 }
 
 
@@ -70,8 +65,7 @@ function daice(e) {
       document.images['dice1'].src = '6d_0' + daice1 + '.gif'
       daiceme = daice + daice1;
       document.getElementById("log").innerHTML = "サイコロが1/3になっています";
-    }
-    if (doing == 2) {
+    }else if (doing == 2) {
       let daice = Math.floor(Math.random() * 4) + 1;
       document.images['dice'].src = '6d_0' + daice + '.gif'
 
@@ -79,8 +73,7 @@ function daice(e) {
       document.images['dice1'].src = '6d_0' + daice1 + '.gif'
       daiceme = daice + daice1;
       document.getElementById("log").innerHTML = "サイコロが2/3になっています";
-    }
-    if (doing == 1) {
+    }else if (doing == 1) {
       let daice = Math.floor(Math.random() * 6) + 1;
       document.images['dice'].src = '6d_0' + daice + '.gif'
 
@@ -88,9 +81,11 @@ function daice(e) {
       document.images['dice1'].src = '6d_0' + daice1 + '.gif'
       daiceme = daice + daice1;
       document.getElementById("log").innerHTML = "";
-    }
-    if (doing == 0) {
+    }else if (doing == 0) {
       document.getElementById("log").innerHTML = "storyをDoingに移動してください";
+      df = 0;
+    }else{
+      document.getElementById("log").innerHTML = "Doingにストーリーは3つまでです";
       df = 0;
     }
 
@@ -151,27 +146,19 @@ function event(c) {
 
   if (c == 3) {
     window.alert("doingにあるストーリーのタスクが元に戻ってしまった！！")
-    if (t3a == 2) {
-      task[3] = 27;
-    }
-    if (t2a == 2) {
-      task[2] = 21;
-    }
-    if (t1a == 2) {
-      task[1] = 24;
+    for(let i=1;i<11;i++){
+      if (taskarea[i] == 2) {
+        task[i] = taskmax[i];
+      }
     }
     insert();
   }
 
   if (c == 4) {
-    if (t3a == 2) {
-      task[3] = 0;
-    }
-    if (t2a == 2) {
-      task[2] = 0;
-    }
-    if (t1a == 2) {
-      task[1] = 0;
+    for(let i=1;i<11;i++){
+      if (taskarea[i] == 2) {
+        task[i] = 0;
+      }
     }
     daiceme=0;
     insert();
@@ -261,34 +248,9 @@ function disp(num,max,name,s) {
 
 //ドロップしたところを登録する処理
 function drop(num,id){
-  if(id=='task1'){
-    t1a=num;
+for(let i=1;i<11;i++){
+  if(id=='task'+i){
+    taskarea[i]=num;
   }
-  if(id=='task2'){
-    t2a=num;
-  }
-  if(id=='task3'){
-    t3a=num;
-  }
-  if(id=='task4'){
-    t4a=num;
-  }
-  if(id=='task5'){
-    t5a=num;
-  }
-  if(id=='task6'){
-    t6a=num;
-  }
-  if(id=='task7'){
-    t7a=num;
-  }
-  if(id=='task8'){
-    t8a=num;
-  }
-  if(id=='task9'){
-    t9a=num;
-  }
-  if(id=='task10'){
-    t10a=num;
-  }
+}
 }
