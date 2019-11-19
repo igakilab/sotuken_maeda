@@ -1,6 +1,6 @@
 let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
-let task = [0,24,21,27,27,27,27,27,27,27,27];//ストーリーのタスク
+let task = [0,24,21,27,24,24,24,24,24,24,24];//ストーリーのタスク
 let t4 = 27; //ストーリー4のタスク
 let t5 = 27; //ストーリー5のタスク
 let t6 = 27; //ストーリー6のタスク
@@ -119,22 +119,13 @@ function clikc() {
 
 //ストーリーを選択したときの画像変更
 function sentaku(z) {
-  if (z == 1) {
-    document.getElementById("task1").className = "active-note";
-    document.getElementById("task2").className = "note";
-    document.getElementById("task3").className = "note";
-  }
-  if (z == 2) {
-    document.getElementById("task1").className = "note";
-    document.getElementById("task2").className = "active-note";
-    document.getElementById("task3").className = "note";
-  }
-  if (z == 3) {
-    document.getElementById("task1").className = "note";
-    document.getElementById("task2").className = "note";
-    document.getElementById("task3").className = "active-note";
-  }
+  if(player==1){
+    document.getElementById("task"+z).className = "player1-note";
+}else{
+    document.getElementById("task"+z).className = "player2-note";
 }
+}
+
 
 
 
