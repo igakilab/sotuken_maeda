@@ -1,8 +1,6 @@
 let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
-let t1 = 24; //ストーリー1のタスク
-let t2 = 21; //ストーリー2のタスク
-let t3 = 27; //ストーリー3のタスク
+let task = [0,24,21,27,27,27,27,27,27,27,27];//ストーリーのタスク
 let t4 = 27; //ストーリー4のタスク
 let t5 = 27; //ストーリー5のタスク
 let t6 = 27; //ストーリー6のタスク
@@ -25,7 +23,7 @@ function insert() {
   document.getElementById("card3").innerHTML = "ユーザは送ったメールに読み取り期限を設定できる。";
   document.getElementById("card4").innerHTML = "ユーザは不特定の相手にセキュアにメールを送信できる。";
   document.getElementById("card5").innerHTML = "管理者はメールを無視できる。";
-  document.getElementById("card6").innerHTML = "管理者は組織ごとにセキュリティポリシーと受信者グループを管理できる。";
+  document.getElementById("card6").innerHTML = "管理者は組織ごとにセキュリティポリシと受信グループを管理できる。";
   document.getElementById("card7").innerHTML = "ユーザはメールを効果的に管理できる。";
   document.getElementById("card8").innerHTML = "ユーザと管理者はメールをセキュアにバックアップできる。";
   document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。";
@@ -394,4 +392,86 @@ function end() {
   daiceme = 0;
   cf = 0;
   reset();
+}
+
+function disp(num,max,name,s) {
+  select=s;
+  if (num == 1) {
+    if (task[select] <= 0) {
+      window.alert(name+'はDoneです.Doneに移動させてください');
+      sentaku(select);
+    } else if (task[select] < max) {
+      window.alert(name+'はDoingです.Doingに移動させてください');
+      sentaku(select);
+    } else if (task[select] > 0) {
+      document.getElementById("task").innerHTML = task[select];
+      sentaku(select);
+    }
+  }
+
+  if (num == 2) {
+    if (task[select] <= 0) {
+      window.alert(name+'はDoneです.Doneに移動させてください');
+      daiceme = 0;
+      sentaku(select);
+    } else {
+      sound();
+      amari = daiceme - task[select];
+      task[select] = task[select] - daiceme;
+      daiceme = 0;
+      if (task[select] > 0) {
+        document.getElementById("task").innerHTML = task[select]
+        sentaku(select);
+      } else {
+        window.alert('お疲れ様です.'+name+'をDoneに移動しましょう');
+        document.getElementById("task").innerHTML = 0;
+        sentaku(select);
+        status();
+        if(doing>1){
+          daiceme = amari;
+      }
+    }
+  }
+}
+  if (num == 3) {
+    if (task[select] <= 0) {
+      window.alert(name+'はDoneです');
+    } else if (task[select] <= max) {
+      window.alert(name+'はDoingです.Doingに移動させてください');
+      sentaku(select);
+    }
+  }
+}
+
+function drop(num,id){
+  if(id=='task1'){
+    t1a=num;
+  }
+  if(id=='task2'){
+    t2a=num;
+  }
+  if(id=='task3'){
+    t3a=num;
+  }
+  if(id=='task4'){
+    t4a=num;
+  }
+  if(id=='task5'){
+    t5a=num;
+  }
+  if(id=='task6'){
+    t6a=num;
+  }
+  if(id=='task7'){
+    t7a=num;
+  }
+  if(id=='task8'){
+    t8a=num;
+  }
+  if(id=='task9'){
+    t9a=num;
+  }
+  if(id=='task10'){
+    t10a=num;
+  }
 }
