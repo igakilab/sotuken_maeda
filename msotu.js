@@ -202,7 +202,7 @@ function end() {
   cf = 0;
   reset();
   count++;
-  if(count >= 12 * player){
+  if(count >= 12 * $ninzu){
     finishtxt();
   }
 }
