@@ -10,6 +10,7 @@ let doing = 0; //doingにあるストーリーの数
 let done = 0; //doneにあるストーリーの数
 let amari = 0; //タスクを減らしたときのあまり
 let player = 1; //プレイヤー
+let count = 0; //ターン経過数
 
 
 function shuffle() {
@@ -200,6 +201,10 @@ function end() {
   daiceme = 0;
   cf = 0;
   reset();
+  count++;
+  if(count >= 12 * player){
+    finishtxt();
+  }
 }
 
 
@@ -263,7 +268,7 @@ function drop(num, id) {
   }
 }
 
-function finish() { //ゲーム終了のお知らせ
+function finish() { //全タスク終了時
   done = 0;
   for (let i = 1; i < 11; i++) {
     if (taskarea[i] == 3) {
@@ -276,6 +281,10 @@ function finish() { //ゲーム終了のお知らせ
         return 0;
       }
     }
-    window.alert("お疲れ様ゲーム終了です");
+    finishtxt();
   }
+}
+
+function finishtxt(){ //ゲーム終了時の文章表示
+  window.alert("お疲れ様ゲーム終了です");
 }
