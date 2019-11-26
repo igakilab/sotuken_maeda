@@ -1,0 +1,270 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="stposition.css" type="text/css">
+  <title>ゲーム画面</title>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script type="text/javascript" src="msotu.js"></script>
+</head>
+
+<body onLoad=insert();shuffle();>
+  <div class="ToDo" id=droparea1>
+    <div class="dai"><br>
+      <p>
+        <font size="7">
+          <center>ToDo</center>
+        </font>
+      </p><br>
+    </div>
+
+    <div class="note" id="task1" draggable="true" onClick="disp(taskarea[1],taskmax[1],'story1',1);">
+      <p>story1<br><span id="card1"></span></p>
+    </div>
+
+    <div class="note" id="task2" draggable="true" onClick="disp(taskarea[2],taskmax[2],'story2',2);">
+      <p>story2<br><span id="card2"></span></p>
+    </div>
+
+    <div class="note" id="task3" draggable="true" onClick="disp(taskarea[3],taskmax[3],'story3',3);">
+      <p>story3<br><span id="card3"></span></p>
+    </div>
+
+    <div class="note" id="task4" draggable="true" onClick="disp(taskarea[4],taskmax[4],'story4',4);">
+      <p>story4<br><span id="card4"></span></p>
+    </div>
+
+    <div class="note" id="task5" draggable="true" onClick="disp(taskarea[5],taskmax[5],'story5',5);">
+      <p>story5<br><span id="card5"></span></p>
+    </div>
+
+    <div class="note" id="task6" draggable="true" onClick="disp(taskarea[6],taskmax[6],'story6',6);">
+      <p>story6<br><span id="card6"></span></p>
+    </div>
+
+    <div class="note" id="task7" draggable="true" onClick="disp(taskarea[7],taskmax[7],'story7',7);">
+      <p>story7<br><span id="card7"></span></p>
+    </div>
+
+    <div class="note" id="task8" draggable="true" onClick="disp(taskarea[8],taskmax[8],'story8',8);">
+      <p>story8<br><span id="card8"></span></p>
+    </div>
+
+    <div class="note" id="task9" draggable="true" onClick="disp(taskarea[9],taskmax[9],'story9',9);">
+      <p>story9<br><span id="card9"></span></p>
+    </div>
+
+    <div class="note" id="task10" draggable="true" onClick="disp(taskarea[10],taskmax[10],'story10',10);">
+      <p>story10<br><span id="card10"></span></p>
+    </div>
+
+
+
+
+  </div>
+  <div class=" Doing" id=droparea2>
+    <div class="dai"><br>
+      <p>
+        <font size="7">
+          <center>Doing</center>
+        </font>
+      </p><br>
+    </div>
+  </div>
+  <div class="Done" id=droparea3>
+    <div class="dai"><br>
+      <p>
+        <font size="7">
+          <center>Done</center>
+        </font>
+      </p><br>
+    </div>
+  </div>
+
+  <audio id="daicesound" preload="auto">
+    <source src="daicesound.wav" type="audio/wav">
+  </audio>
+  <audio id="clikcsound" preload="auto">
+    <source src="sound.mp3" type="audio/wav">
+  </audio>
+  <span><img src="6d.gif" id="dice" class="dice" onclick="daice();" alt="" name="dice"></span>
+  <span><img src="6d.gif" id="dice1" class="dice1" onclick="daice();" alt="" name="dice1"></span>
+  <span><img src="card.png" id="card" class="card" onclick="chance();" width="300" height="200" name="card"></span>
+  <p class="sukoa">タスク； <span id="task">0</span></p>
+  <p class="log"><span id="log">ログ</span></p>
+  <button class="end" type="button" onclick="end();">end</button>
+  <p class="player"><span id="player">player1の番です</span></p>
+  <audio id="stbgm" preload="auto" autoplay loop>
+    <source src="stbgm.mp3" type="audio/mp3">
+  </audio>
+</body>
+
+</html>
+
+<script>
+  let task1 = document.getElementById("task1");
+  let task2 = document.getElementById("task2");
+  let task3 = document.getElementById("task3");
+  let task4 = document.getElementById("task4");
+  let task5 = document.getElementById("task5");
+  let task6 = document.getElementById("task6");
+  let task7 = document.getElementById("task7");
+  let task8 = document.getElementById("task8");
+  let task9 = document.getElementById("task9");
+  let task10 = document.getElementById("task10");
+  let area1 = document.getElementById("droparea1");
+  let area2 = document.getElementById("droparea2");
+  let area3 = document.getElementById("droparea3");
+
+  //ドラッグ開始時の処理
+  task1.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+
+  task2.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+
+  task3.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  task4.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  task5.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  task6.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  task7.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  task8.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  task9.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  task10.addEventListener("dragstart", function (evt) {
+
+    //ドラッグ要素のidをdataTransferにセット
+    evt.dataTransfer.setData("text/html", evt.target.id);
+    evt.stopPropagation();
+  }, false);
+
+  //ドロップされた時の処理
+  area1.addEventListener("drop", function (evt) {
+    //id名をdataTransferから取り出す
+    let id = evt.dataTransfer.getData("text/html");
+
+    let obj1 = document.getElementById(id);
+    if (obj1) {
+      area1.appendChild(obj1);  //要素を移動する
+      drop(1,id);
+    }
+
+    evt.preventDefault();
+  }, false);
+
+  area1.addEventListener("dragenter", function (evt) {
+    evt.preventDefault();
+  }, false);
+  area1.addEventListener("dragover", function (evt) {
+    evt.preventDefault();
+  }, false);
+
+
+
+
+  area2.addEventListener("drop", function (evt) {
+
+　　status();
+    if(doing<3){
+
+    //id名をdataTransferから取り出す
+    let id = evt.dataTransfer.getData("text/html");
+
+    let obj2 = document.getElementById(id);
+    if (obj2) {
+      area2.appendChild(obj2);  //要素を移動する
+      drop(2,id);
+    }
+
+    evt.preventDefault();
+  }}, false);
+
+  //２つのイベントでデフォルト動作を抑制する
+  area2.addEventListener("dragenter", function (evt) {
+    evt.preventDefault();
+  }, false);
+  area2.addEventListener("dragover", function (evt) {
+    evt.preventDefault();
+  }, false);
+
+
+
+
+
+
+  area3.addEventListener("drop", function (evt) {
+
+    //id名をdataTransferから取り出す
+    let id = evt.dataTransfer.getData("text/html");
+
+    let obj3 = document.getElementById(id);
+    if (obj3) {
+      area3.appendChild(obj3);  //要素を移動する
+   drop(3,id);
+   finish();
+    }
+
+    evt.preventDefault();
+  }, false);
+
+  //２つのイベントでデフォルト動作を抑制する
+  area3.addEventListener("dragenter", function (evt) {
+    evt.preventDefault();
+  }, false);
+  area3.addEventListener("dragover", function (evt) {
+    evt.preventDefault();
+  }, false);
+</script>

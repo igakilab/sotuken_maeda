@@ -12,6 +12,11 @@ let amari = 0; //タスクを減らしたときのあまり
 let player = 1; //プレイヤー
 
 
+function shuffle() {
+  let urlparams = new URLSearchParams(window.location.search);
+  $ninzu = urlparams.get('p1');
+}
+
 //起動時ストーリーカードに文字を挿入する
 function insert() {
   for (let i = 1; i < 11; i++) {
@@ -116,10 +121,10 @@ function clikc() {
 
 //ストーリーを選択したときの画像変更
 function sentaku(z) { //ｚ＝ストーリーの番号
-  if (player == 1) {
-    document.getElementById("task" + z).className = "player1-note";
-  } else {
-    document.getElementById("task" + z).className = "player2-note";
+  for (let i = 1; i <= $ninzu; i++) {
+    if (player == i) {
+      document.getElementById("task" + z).className = "player" + i + "-note";
+    }
   }
 }
 //チャンスカードのクリックしたときの動き
@@ -183,20 +188,21 @@ function event(c) {
   }
 }
 
+
 //endボタンを押したときの処理
 function end() {
-  if (player == 1) {
-    player = 2;
-    document.getElementById("player").innerHTML = 'player2の番です';
-  } else {
-    player = 1;
-    document.getElementById("player").innerHTML = 'player1の番です';
+  if (player == $ninzu) {
+    player = 0;
   }
+  player++;
+  document.getElementById("player").innerHTML = 'player' + player + 'の番です';
   df = 0;
   daiceme = 0;
   cf = 0;
   reset();
 }
+
+
 //ストーリーをクリックしたときの処理
 function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タスク名',s=ストーリーの番号
   select = s;
