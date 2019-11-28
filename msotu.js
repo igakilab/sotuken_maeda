@@ -133,9 +133,20 @@ function chance() {
   if (df == 0) {
     document.getElementById("log").innerHTML = '先にダイスを振りましょう';
   } else if (cf == 0) {
-    let chance = Math.floor(Math.random() * 8) + 1;
-    document.images['card'].src = "e" + chance + ".jpg"
-    event(chance);
+    let ck = Math.floor(Math.random() * 3) + 1;
+    if(ck==1){
+      let chance = Math.floor(Math.random() * 8) + 1;
+      document.images['card'].src = "e" + chance + ".jpg"
+      event(chance);
+    }
+    if(ck==2){
+      let chance = Math.floor(Math.random() * 8) + 1;
+      document.images['card'].src = "p" + chance + ".jpg"
+     }
+    if(ck==3){
+      let chance = Math.floor(Math.random() * 10) + 1;
+      document.images['card'].src = "k" + chance + ".jpg"
+     }
     cf = 1;
   }
 }
