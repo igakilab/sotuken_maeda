@@ -11,6 +11,7 @@ let done = 0; //doneにあるストーリーの数
 let amari = 0; //タスクを減らしたときのあまり
 let player = 1; //プレイヤー
 let count = 0; //ターン経過数
+let snum = [0,0,0,0];
 
 
 function shuffle() {
@@ -146,6 +147,7 @@ function chance() {
     if(ck==3){
       let chance = Math.floor(Math.random() * 10) + 1;
       document.images['card'].src = "k" + chance + ".jpg"
+      solutioncount();
      }
     cf = 1;
   }
@@ -198,6 +200,10 @@ function event(c) {
   if (c == 8) {
     daiceme = daiceme / 2;
   }
+}
+
+function solutioncount(){
+  snum[player]++;
 }
 
 
