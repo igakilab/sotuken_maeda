@@ -11,7 +11,7 @@ let done = 0; //doneにあるストーリーの数
 let amari = 0; //タスクを減らしたときのあまり
 let player = 1; //プレイヤー
 let count = 0; //ターン経過数
-let snum = [0,0,0,0];
+let snum = [0,0,0,0,0];//player毎のsolutionカードの所持数
 
 
 function shuffle() {
@@ -202,8 +202,21 @@ function event(c) {
   }
 }
 
+//solutionを引いたときの処理
 function solutioncount(){
   snum[player]++;
+  if($ninzu==1){
+    document.getElementById("solution").innerHTML = 'Sカード　P1:'+snum[1];
+  }
+  if($ninzu==2){
+    document.getElementById("solution").innerHTML = 'Sカード　P1:'+snum[1]+' P2:'+snum[2];
+  }
+  if($ninzu==3){
+    document.getElementById("solution").innerHTML = 'Sカード　P1:'+snum[1]+' P2:'+snum[2]+' P3:'+snum[3];
+  }
+  if($ninzu==4){
+    document.getElementById("solution").innerHTML = 'Sカード　P1:'+snum[1]+' P2:'+snum[2]+' P3:'+snum[3]+' P4:'+snum[4];
+  }
 }
 
 
