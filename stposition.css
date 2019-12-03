@@ -397,3 +397,13 @@ font-size:60px;
     -o-transform: rotate(-6deg);
 }
  
+.problem{
+    color: red;
+    text-align: center;
+    font: normal normal normal 2em/1.2em 'Reenie Beanie', Helvetica, Arial, sans-serif;
+    color: #000;
+    text-shadow: white 1px 1px 0px;
+    overflow:hidden;
+    font-size:25px;
+}
+

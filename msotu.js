@@ -12,7 +12,7 @@ let amari = 0; //タスクを減らしたときのあまり
 let player = 1; //プレイヤー
 let count = 0; //ターン経過数
 let snum = [0,0,0,0,0];//player毎のsolutionカードの所持数
-
+let problem = [0,0,0,0,0,0,0,0,0,0,0];//problemが発生してるかどうか
 
 function shuffle() {
   let urlparams = new URLSearchParams(window.location.search);
@@ -36,7 +36,37 @@ function insert() {
   document.getElementById("card8").innerHTML = "ユーザと管理者はメールをセキュアにバックアップできる。<br>" + task[8];
   document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。<br>" + task[9];
   document.getElementById("card10").innerHTML = "ユーザはモバイル機器からメールを利用できる。<br>" + task[10];
-}
+
+    for(let j = 1;j < 11; j++){
+      if(problem[j] > 0){
+        if(problem[j] == 1){
+          document.getElementById("card"+j).innerHTML = "problem<br>技術的障害に遭遇した。<br>" + task[j];
+        }
+        if(problem[j] == 2){
+          document.getElementById("card"+j).innerHTML = "problem<br>品質が不十分なため作業が進められない。<br>" + task[j];
+        }
+        if(problem[j] == 3){
+          document.getElementById("card"+j).innerHTML = "problem<br>担当のタスクをこなすにはスキルが不足している。<br>" + task[j];
+        }
+        if(problem[j] == 4){
+          document.getElementById("card"+j).innerHTML = "problem<br>他部署とコミュニケーションが十分にできない。<br>" + task[j];
+        }
+        if(problem[j] == 5){
+          document.getElementById("card"+j).innerHTML = "problem<br>作業に計画以上のコストがかかる。<br>" + task[j];
+        }
+        if(problem[j] == 6){
+          document.getElementById("card"+j).innerHTML = "problem<br>テストがうまくできない。<br>" + task[j];
+        }
+        if(problem[j] == 7){
+          document.getElementById("card"+j).innerHTML = "problem<br>仕様が不明確で困る。<br>" + task[j];
+        }
+        if(problem[j] == 8){
+          document.getElementById("card"+j).innerHTML = "problem<br>ユーザーが満足していないように思われる。<br>" + task[j];
+        }
+      }
+    }
+  }
+
 
 //doingにあるストーリーの数を数える
 function status() {
@@ -54,6 +84,7 @@ function reset() {
   document.images['dice'].src = '6d.gif'
   document.images['dice1'].src = '6d.gif'
   document.images['card'].src = "card.png"
+
 }
 
 
@@ -143,6 +174,7 @@ function chance() {
     if(ck==2){
       let chance = Math.floor(Math.random() * 8) + 1;
       document.images['card'].src = "p" + chance + ".jpg"
+      problemevent(chance);
      }
     if(ck==3){
       let chance = Math.floor(Math.random() * 10) + 1;
@@ -217,6 +249,11 @@ function solutioncount(){
   if($ninzu==4){
     document.getElementById("solution").innerHTML = 'Sカード　P1:'+snum[1]+' P2:'+snum[2]+' P3:'+snum[3]+' P4:'+snum[4];
   }
+}
+
+function problemevent(p){
+  problem[select] = p;
+  insert();
 }
 
 
