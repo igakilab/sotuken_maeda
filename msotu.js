@@ -13,6 +13,7 @@ let player = 1; //プレイヤー
 let count = 0; //ターン経過数
 let snum = [0,0,0,0,0];//player毎のsolutionカードの所持数
 let problem = [0,0,0,0,0,0,0,0,0,0,0];//problemが発生してるかどうか
+let drag = 0;//ドラッグしているストーリーの番号
 
 function shuffle() {
   let urlparams = new URLSearchParams(window.location.search);

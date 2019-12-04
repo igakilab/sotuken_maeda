@@ -121,7 +121,7 @@
 
   //ドラッグ開始時の処理
   task1.addEventListener("dragstart", function (evt) {
-
+    drag = 1;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
@@ -129,7 +129,7 @@
 
 
   task2.addEventListener("dragstart", function (evt) {
-
+    drag = 2;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
@@ -137,56 +137,56 @@
 
 
   task3.addEventListener("dragstart", function (evt) {
-
+    drag = 3;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
   }, false);
 
   task4.addEventListener("dragstart", function (evt) {
-
+    drag = 4;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
   }, false);
 
   task5.addEventListener("dragstart", function (evt) {
-
+    drag = 5;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
   }, false);
 
   task6.addEventListener("dragstart", function (evt) {
-
+    drag = 6;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
   }, false);
 
   task7.addEventListener("dragstart", function (evt) {
-
+    drag = 7;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
   }, false);
 
   task8.addEventListener("dragstart", function (evt) {
-
+    drag = 8;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
   }, false);
 
   task9.addEventListener("dragstart", function (evt) {
-
+    drag = 9;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
   }, false);
 
   task10.addEventListener("dragstart", function (evt) {
-
+    drag = 10;
     //ドラッグ要素のidをdataTransferにセット
     evt.dataTransfer.setData("text/html", evt.target.id);
     evt.stopPropagation();
@@ -194,6 +194,7 @@
 
   //ドロップされた時の処理
   area1.addEventListener("drop", function (evt) {
+    drag = 0;
     //id名をdataTransferから取り出す
     let id = evt.dataTransfer.getData("text/html");
 
@@ -217,10 +218,9 @@
 
 
   area2.addEventListener("drop", function (evt) {
-
+    drag = 0;
 　　status();
     if(doing<3){
-
     //id名をdataTransferから取り出す
     let id = evt.dataTransfer.getData("text/html");
 
@@ -247,7 +247,7 @@
 
 
   area3.addEventListener("drop", function (evt) {
-
+    if(problem[drag] == 0){
     //id名をdataTransferから取り出す
     let id = evt.dataTransfer.getData("text/html");
 
@@ -259,7 +259,8 @@
     }
 
     evt.preventDefault();
-  }, false);
+  }
+  drag = 0;}, false);
 
   //２つのイベントでデフォルト動作を抑制する
   area3.addEventListener("dragenter", function (evt) {
