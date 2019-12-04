@@ -90,6 +90,14 @@ function reset() {
 
 //乱数で１～６の数字を生成しdaice.numに代入。数字に合ったgifを再生
 function daice(e) {
+
+  for(let i = 1; i < 11; i++){
+    if(taskarea[i] == 3 &&  task[i] > 0){
+      document.getElementById("log").innerHTML = '問題があります修正してください';
+      return 0;
+    }
+  }
+
   if (select == 0) {
     document.getElementById("log").innerHTML = 'storyを選択してください';
   } else if (df == 0) {
@@ -162,6 +170,14 @@ function sentaku(z) { //ｚ＝ストーリーの番号
 }
 //チャンスカードのクリックしたときの動き
 function chance() {
+
+  for(let i = 1; i < 11; i++){
+    if(taskarea[i] == 3 &&  task[i] > 0){
+      document.getElementById("log").innerHTML = '問題があります修正してください';
+      return 0;
+    }
+  }
+
   if (df == 0) {
     document.getElementById("log").innerHTML = '先にダイスを振りましょう';
   } else if (cf == 0) {
@@ -252,8 +268,25 @@ function solutioncount(){
 }
 
 function problemevent(p){
+  if(problem[select] == 0){
   problem[select] = p;
   insert();
+}else{
+  for(let i = 1; i < 11; i++){
+    if(taskarea[i] == 2 &&  problem[i] == 0){
+      problem[i] = p;
+      insert();
+      return 0;
+    }
+  }
+  for(let i = 1; i < 11; i++){
+    if(taskarea[i] == 1 &&  problem[i] == 0){
+      problem[i] = p;
+      insert();
+      return 0;
+    }
+  }
+}
 }
 
 
