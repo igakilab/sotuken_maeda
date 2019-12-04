@@ -41,28 +41,28 @@ function insert() {
     for(let j = 1;j < 11; j++){
       if(problem[j] > 0){
         if(problem[j] == 1){
-          document.getElementById("card"+j).innerHTML = "problem<br>技術的障害に遭遇した。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>技術的障害に遭遇した。<br>" + task[j];
         }
         if(problem[j] == 2){
-          document.getElementById("card"+j).innerHTML = "problem<br>品質が不十分なため作業が進められない。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>品質が不十分なため作業が進められない。<br>" + task[j];
         }
         if(problem[j] == 3){
-          document.getElementById("card"+j).innerHTML = "problem<br>担当のタスクをこなすにはスキルが不足している。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>このタスクをこなすにはスキル不足である。<br>" + task[j];
         }
         if(problem[j] == 4){
-          document.getElementById("card"+j).innerHTML = "problem<br>他部署とコミュニケーションが十分にできない。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>他部署とコミュニケーションが十分にできない。<br>" + task[j];
         }
         if(problem[j] == 5){
-          document.getElementById("card"+j).innerHTML = "problem<br>作業に計画以上のコストがかかる。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>作業に計画以上のコストがかかる。<br>" + task[j];
         }
         if(problem[j] == 6){
-          document.getElementById("card"+j).innerHTML = "problem<br>テストがうまくできない。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>テストがうまくできない。<br>" + task[j];
         }
         if(problem[j] == 7){
-          document.getElementById("card"+j).innerHTML = "problem<br>仕様が不明確で困る。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>仕様が不明確で困る。<br>" + task[j];
         }
         if(problem[j] == 8){
-          document.getElementById("card"+j).innerHTML = "problem<br>ユーザーが満足していないように思われる。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>ユーザーが満足していないように思われる。<br>" + task[j];
         }
       }
     }
