@@ -170,6 +170,11 @@ function sentaku(z) { //ｚ＝ストーリーの番号
       document.getElementById("task" + z).className = "player" + i + "-note";
     }
   }
+  for (let i = 1; i < 11; i++) {
+   if(i != z){
+     document.getElementById("task" + i).className = "note";
+   }
+  }
 }
 //チャンスカードのクリックしたときの動き
 function chance() {
