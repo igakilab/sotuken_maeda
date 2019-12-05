@@ -329,6 +329,7 @@ function end() {
 //ストーリーをクリックしたときの処理
 function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タスク名',s=ストーリーの番号
 
+//ここからsolutionの処理
 if(sf == 1){
 if(problem[s] == 0){
   document.getElementById("log").innerHTML = '選択したstoryには<br>Problemはありません';
@@ -340,7 +341,7 @@ if(problem[s] == 0){
     sf = 2;
     problem[s] = 0;
     insert();
-    snum[player]-=
+    snum[player] = snum[player]-2;
     solutioncount();
     document.getElementById("log").innerHTML = 'problemは解決されました';
   }else{
@@ -350,6 +351,7 @@ if(problem[s] == 0){
 }
 return 0;
 }
+//ここまで
 
   select = s;
   if (num == 1) {
