@@ -103,7 +103,9 @@ function daice(e) {
 
   if (select == 0) {
     document.getElementById("log").innerHTML = 'storyを選択してください';
-  } else if (df == 0) {
+  } else if(taskarea[select] != 2){
+  document.getElementById("log").innerHTML = 'doingにあるストーリーを<br>選択してください';
+  }else if (df == 0) {
     df = 1;
     clikc();
     ring();
@@ -185,10 +187,11 @@ function chance() {
       return 0;
     }
   }
-
-  if (df == 0) {
+   if (df == 0) {
     document.getElementById("log").innerHTML = '先にダイスを振りましょう';
-  } else if (cf == 0) {
+  } else if(taskarea[select] != 2){
+  document.getElementById("log").innerHTML = 'doingにあるストーリーを<br>選択してください';
+}else if (cf == 0) {
     let ck = Math.floor(Math.random() * 3) + 1;
     if(ck==1){
       let chance = Math.floor(Math.random() * 8) + 1;
