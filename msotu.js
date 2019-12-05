@@ -1,10 +1,11 @@
 let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
 let task = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //ストーリーのタスク
-let taskmax = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21] //タスクの初期値
+let taskmax = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //タスクの初期値
 let taskarea = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //タスクがある場所
 let df = 0; //ダイスをこのターン振っているか判断
 let cf = 0; //チャンスカードを引いているか判断
+let sf = 0;//solutionを試みようとしているかの判断
 let select = 0; //選択されているストーリー
 let doing = 0; //doingにあるストーリーの数
 let done = 0; //doneにあるストーリーの数
@@ -14,6 +15,7 @@ let count = 0; //ターン経過数
 let snum = [0,0,0,0,0];//player毎のsolutionカードの所持数
 let problem = [0,0,0,0,0,0,0,0,0,0,0];//problemが発生してるかどうか
 let drag = 0;//ドラッグしているストーリーの番号
+let psen = [0,"技術的障害に遭遇した。","品質が不十分なため作業が進められない。","このタスクをこなすにはスキル不足である。","他部署とコミュニケーションが十分にできない。","作業に計画以上のコストがかかる。","テストがうまくできない。","仕様が不明確で困る。","ユーザーが満足していないように思われる。"];
 
 function shuffle() {
   let urlparams = new URLSearchParams(window.location.search);
@@ -41,28 +43,28 @@ function insert() {
     for(let j = 1;j < 11; j++){
       if(problem[j] > 0){
         if(problem[j] == 1){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>技術的障害に遭遇した。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[1] + "<br>" + task[j];
         }
         if(problem[j] == 2){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>品質が不十分なため作業が進められない。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[2] + "<br>" + task[j];
         }
         if(problem[j] == 3){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>このタスクをこなすにはスキル不足である。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[3] + "<br>" + task[j];
         }
         if(problem[j] == 4){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>他部署とコミュニケーションが十分にできない。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[4] + "<br>" + task[j];
         }
         if(problem[j] == 5){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>作業に計画以上のコストがかかる。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[5] + "<br>" + task[j];
         }
         if(problem[j] == 6){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>テストがうまくできない。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[6] + "<br>" + task[j];
         }
         if(problem[j] == 7){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>仕様が不明確で困る。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[7] + "<br>" + task[j];
         }
         if(problem[j] == 8){
-          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>ユーザーが満足していないように思われる。<br>" + task[j];
+          document.getElementById("card"+j).innerHTML = "<font color='red'>problem</font><br>" + psen[8] + "<br>" + task[j];
         }
       }
     }
@@ -268,6 +270,19 @@ function solutioncount(){
   }
 }
 
+//solutionbuttonを押したときの処理
+function solutionevent() {
+  if(sf == 2){
+    document.getElementById("log").innerHTML = 'solutionは1ターンに<br>1回のみ使えます';
+  }else if(snum[player] == 0){
+    window.alert("あなたはsolutionカードを持っていません");
+  } else {
+    document.getElementById("log").innerHTML = 'problemを解決します<br>好きなstoryを選んでください';
+   sf = 1;
+  }
+}
+
+//引いたProblemを条件によって振り分ける
 function problemevent(p){
   if(problem[select] == 0){
   problem[select] = p;
@@ -301,7 +316,9 @@ function end() {
   df = 0;
   daiceme = 0;
   cf = 0;
+  sf = 0;
   reset();
+  document.getElementById("log").innerHTML = '';
   count++;
   if(count >= 12 * $ninzu){
     finishtxt();
@@ -311,6 +328,29 @@ function end() {
 
 //ストーリーをクリックしたときの処理
 function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タスク名',s=ストーリーの番号
+
+if(sf == 1){
+if(problem[s] == 0){
+  document.getElementById("log").innerHTML = '選択したstoryには<br>Problemはありません';
+  sf = 0;
+} else {
+  let pnum = problem[s];
+  let result = window.confirm(psen[pnum] + '\n\nこの問題を解決するためにあなたの解決策を披露してください\n\n他の人はこの解決策がいいと思ったら「ok」をダメだと思ったら「キャンセル」を選んでください');
+  if(result){
+    sf = 2;
+    problem[s] = 0;
+    insert();
+    snum[player]-=
+    solutioncount();
+    document.getElementById("log").innerHTML = 'problemは解決されました';
+  }else{
+    document.getElementById("log").innerHTML = '残念。別の解決策を考えましょう';
+    sf = 2;
+  }
+}
+return 0;
+}
+
   select = s;
   if (num == 1) {
     if (task[select] <= 0) {

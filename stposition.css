@@ -135,6 +135,16 @@ height:100px;
 font-size:60px;
 }
 
+
+.sbutton{
+position: absolute;
+left: 20%;
+bottom: 200px;
+width: 250px;
+height:100px;
+font-size:60px;
+}
+
 /*ストーリーの見た目 */
 .note {
     float: left;
