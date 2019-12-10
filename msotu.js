@@ -16,6 +16,7 @@ let snum = [0,0,0,0,0];//player毎のsolutionカードの所持数
 let problem = [0,0,0,0,0,0,0,0,0,0,0];//problemが発生してるかどうか
 let drag = 0;//ドラッグしているストーリーの番号
 let psen = [0,"技術的障害に遭遇した。","品質が不十分なため作業が進められない。","このタスクをこなすにはスキル不足である。","他部署とコミュニケーションが十分にできない。","作業に計画以上のコストがかかる。","テストがうまくできない。","仕様が不明確で困る。","ユーザーが満足していないように思われる。"];
+let round = 1;//ラウンド数を数える
 
 function shuffle() {
   let urlparams = new URLSearchParams(window.location.search);
@@ -318,6 +319,8 @@ function problemevent(p){
 function end() {
   if (player == $ninzu) {
     player = 0;
+    round++;
+    document.getElementById("round").innerHTML = round;
   }
   player++;
   document.getElementById("player").innerHTML = 'player' + player + 'の番です';
@@ -370,7 +373,7 @@ return 0;
       window.alert(name + 'はDoingです.Doingに移動させてください');
       sentaku(select);
     } else if (task[select] > 0) {
-      document.getElementById("task").innerHTML = task[select];
+
       sentaku(select);
     }
   }
@@ -386,11 +389,11 @@ return 0;
       task[select] = task[select] - daiceme;
       daiceme = 0;
       if (task[select] > 0) {
-        document.getElementById("task").innerHTML = task[select]
+
         sentaku(select);
       } else {
         window.alert('お疲れ様です.' + name + 'をDoneに移動しましょう');
-        document.getElementById("task").innerHTML = 0;
+
         sentaku(select);
         status();
         if (doing > 1) {
