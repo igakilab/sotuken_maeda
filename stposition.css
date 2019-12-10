@@ -102,7 +102,7 @@ left: 0;
 font-size:60px;
 }
 
-.log{
+.solution{
 position: absolute;
 left: 0;
 bottom: -10px;
@@ -118,11 +118,29 @@ font-size:60px;
 
 }
 
+.log{
+position: absolute;
+right: 10%;
+bottom: 100px;
+font-size:60px;
+   
+    }
+
 .end{
 position: absolute;
 right: 0;
 bottom: 10px;
 width: 200px;
+height:100px;
+font-size:60px;
+}
+
+
+.sbutton{
+position: absolute;
+left: 20%;
+bottom: 200px;
+width: 250px;
 height:100px;
 font-size:60px;
 }
@@ -389,3 +407,13 @@ font-size:60px;
     -o-transform: rotate(-6deg);
 }
  
+.problem{
+    color: red;
+    text-align: center;
+    font: normal normal normal 2em/1.2em 'Reenie Beanie', Helvetica, Arial, sans-serif;
+    color: #000;
+    text-shadow: white 1px 1px 0px;
+    overflow:hidden;
+    font-size:25px;
+}
+
