@@ -206,7 +206,7 @@ function chance() {
      }
     if(ck==3){
       let chance = Math.floor(Math.random() * 10) + 1;
-      document.images['card'].src = "k" + chance + ".jpg"
+      document.images['card'].src = "k0.jpg"
       solutioncount();
      }
     cf = 1;
