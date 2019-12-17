@@ -14,7 +14,7 @@ let player = 1; //プレイヤー
 let count = 0; //ターン経過数
 let snum = [0, 0, 0, 0, 0]; //player毎のsolutionカードの所持数
 let problem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //problemが発生してるかどうか
-let res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
+let res = [0, 1, 2, 3, 4, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
 let drag = 0; //ドラッグしているストーリーの番号
 let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザーが満足していないように思われる。"];
 let round = 1; //ラウンド数を数える
@@ -154,16 +154,20 @@ function clikc() {
 
 //ストーリーを選択したときの画像変更
 function sentaku(z) { //ｚ＝ストーリーの番号
+for (let i = 1; i < 11; i++) {
+if(res[i] == 0){
+  document.getElementById("task" + i).className = "note";
+}else{
+  document.getElementById("task" + i).className = "player" + res[i] + "-note";
+}
+}
+if(res[z] ==0){
   for (let i = 1; i <= $ninzu; i++) {
     if (player == i) {
       document.getElementById("task" + z).className = "player" + i + "-note";
     }
   }
-  for (let i = 1; i < 11; i++) {
-    if (i != z) {
-      document.getElementById("task" + i).className = "note";
-    }
-  }
+}
 }
 
 //チャンスカードのクリックしたときの動き
@@ -370,17 +374,26 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
   }
 
   if (num == 2) {
+
+   if(res[select]>0 && res[select] != player){
+     window.alert('担当ではないため作業できません');
+     return 0;
+   }
+
     if (task[select] <= 0) {
       window.alert(name + 'はDoneです.Doneに移動させてください');
-      daiceme = 0;
       sentaku(select);
     } else {
       sound();
       amari = daiceme - task[select];
       task[select] = task[select] - daiceme;
       daiceme = 0;
-      if (task[select] > 0) {
 
+      if(res[select] == 0){
+        res[select] =player;
+      }
+
+      if (task[select] > 0) {
         sentaku(select);
       } else {
         window.alert('お疲れ様です.' + name + 'をDoneに移動しましょう');
