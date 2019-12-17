@@ -30,16 +30,21 @@ function insert() {
       task[i] = 0;
     }
   }
-  document.getElementById("card1").innerHTML = "ユーザはあらかじめ指定した相手と、セキュアにメールを送受信できる。<br>" + task[1];
-  document.getElementById("card2").innerHTML = "ユーザは大きなファイルをセキュアに送信できる。<br>" + task[2];
-  document.getElementById("card3").innerHTML = "ユーザは送ったメールに読み取り期限を設定できる。<br>" + task[3];
-  document.getElementById("card4").innerHTML = "ユーザは不特定の相手にセキュアにメールを送信できる。<br>" + task[4];
-  document.getElementById("card5").innerHTML = "管理者はメールを無視できる。<br>" + task[5];
-  document.getElementById("card6").innerHTML = "管理者は組織ごとにセキュリティポリシと受信グループを管理できる。<br>" + task[6];
-  document.getElementById("card7").innerHTML = "ユーザはメールを効果的に管理できる。<br>" + task[7];
-  document.getElementById("card8").innerHTML = "ユーザと管理者はメールをセキュアにバックアップできる。<br>" + task[8];
-  document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。<br>" + task[9];
-  document.getElementById("card10").innerHTML = "ユーザはモバイル機器からメールを利用できる。<br>" + task[10];
+  document.getElementById("card1").innerHTML = "ユーザは相手と、メールを送受信できる。<br>";
+  document.getElementById("card2").innerHTML = "ユーザは大きなファイルを送信できる。<br>";
+  document.getElementById("card3").innerHTML = "ユーザはメールに読み取り期限を設定できる。<br>";
+  document.getElementById("card4").innerHTML = "ユーザは不特定の相手にメールを送信できる。<br>";
+  document.getElementById("card5").innerHTML = "管理者はメールを無視できる。<br>";
+  document.getElementById("card6").innerHTML = "管理者は組織ごとに受信グループを管理できる。<br>";
+  document.getElementById("card7").innerHTML = "ユーザはメールを効果的に管理できる。<br>";
+  document.getElementById("card8").innerHTML = "ユーザと管理者はメールをバックアップできる。<br>";
+  document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。<br>";
+  document.getElementById("card10").innerHTML = "ユーザはモバイル機器からメールを利用できる。<br>";
+
+  for (let i = 1; i < 11; i++) {
+document.getElementById("kosu"+i).innerHTML = task[i];
+  }
+
 
     for(let j = 1;j < 11; j++){
       if(problem[j] > 0){
