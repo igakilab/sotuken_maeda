@@ -14,7 +14,7 @@ let player = 1; //プレイヤー
 let count = 0; //ターン経過数
 let snum = [0, 0, 0, 0, 0]; //player毎のsolutionカードの所持数
 let problem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //problemが発生してるかどうか
-let res = [0, 1, 2, 3, 4, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
+let res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
 let drag = 0; //ドラッグしているストーリーの番号
 let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザーが満足していないように思われる。"];
 let round = 1; //ラウンド数を数える
@@ -164,7 +164,7 @@ if(res[i] == 0){
 if(res[z] ==0){
   for (let i = 1; i <= $ninzu; i++) {
     if (player == i) {
-      document.getElementById("task" + z).className = "player" + i + "-note";
+      document.getElementById("task" + z).className = "noplayer" + i + "-note";
     }
   }
 }
