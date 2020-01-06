@@ -31,16 +31,16 @@ function insert() {
       task[i] = 0;
     }
   }
-  document.getElementById("card1").innerHTML = "ユーザは相手と、メールを送受信できる。<br>";
-  document.getElementById("card2").innerHTML = "ユーザは大きなファイルを送信できる。<br>";
-  document.getElementById("card3").innerHTML = "ユーザはメールに読み取り期限を設定できる。<br>";
-  document.getElementById("card4").innerHTML = "ユーザは不特定の相手にメールを送信できる。<br>";
-  document.getElementById("card5").innerHTML = "管理者はメールを無視できる。<br>";
-  document.getElementById("card6").innerHTML = "管理者は組織ごとに受信グループを管理できる。<br>";
-  document.getElementById("card7").innerHTML = "ユーザはメールを効果的に管理できる。<br>";
-  document.getElementById("card8").innerHTML = "ユーザと管理者はメールをバックアップできる。<br>";
-  document.getElementById("card9").innerHTML = "ユーザと管理者はメールを完全に削除できる。<br>";
-  document.getElementById("card10").innerHTML = "ユーザはモバイル機器からメールを利用できる。<br>";
+  document.getElementById("card1").innerHTML = "画面のデザイン・作成<br>";
+  document.getElementById("card2").innerHTML = "ユーザアカウントの作成・ログイン機能の開発<br>";
+  document.getElementById("card3").innerHTML = "動画アップロード機能の開発<br>";
+  document.getElementById("card4").innerHTML = "動画を検索する機能の開発<br>";
+  document.getElementById("card5").innerHTML = "動画を評価する機能の開発<br>";
+  document.getElementById("card6").innerHTML = "ユーザーと配信者のコミュニケーション機能の開発<br>";
+  document.getElementById("card7").innerHTML = "課金システムの開発<br>";
+  document.getElementById("card8").innerHTML = "オンライン機能の開発<br>";
+  document.getElementById("card9").innerHTML = "セキュリティの検討・設計<br>";
+  document.getElementById("card10").innerHTML = "全体のテスト・修正<br>";
 
 
   for (let j = 1; j < 11; j++) {
