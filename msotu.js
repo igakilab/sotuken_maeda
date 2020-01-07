@@ -2,8 +2,8 @@ let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
 let task = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //ストーリーのタスク
 let taskmax = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //タスクの初期値
-let rtask = [0, 8, 10, 9, 8, 5, 14, 12, 8, 22, 7];
-let dtask = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14];
+let rtask = [0, 8, 10, 9, 8, 5, 14, 12, 8, 22, 7];//redyのタスク残量
+let dtask = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14];//doingのタスク残量
 let taskarea = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //タスクがある場所
 let df = 0; //ダイスをこのターン振っているか判断
 let cf = 0; //チャンスカードを引いているか判断
@@ -18,7 +18,6 @@ let count = 0; //ターン経過数
 let snum = [0, 0, 0, 0, 0]; //player毎のsolutionカードの所持数
 let problem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //problemが発生してるかどうか
 let res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
-let readygo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//readyでの作業が終わっているか
 let drag = 0; //ドラッグしているストーリーの番号
 let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザが満足していないように思われる。"];
 let round = 1; //ラウンド数を数える
@@ -395,6 +394,8 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
     }
   }
 
+
+
   if(num ==4){
     if (rtask[select] <= 0) {
       window.alert(name + 'は準備完了です。doingに移ってください');
@@ -423,12 +424,15 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
 
 
 
-
-
   if (num == 2) {
 
    if(res[select]>0 && res[select] != player){
      window.alert('担当ではないため作業できません');
+     return 0;
+   }
+
+   if(rtask[select]>0){
+     window.alert('先に準備しましょう');
      return 0;
    }
 
