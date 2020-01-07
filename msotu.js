@@ -249,11 +249,11 @@ function event(c) {
 
   if (c == 4) {
     for (let i = 1; i < 11; i++) {
-      if (taskarea[i] == 2) {
-        task[i] = 0;
+      if (res[i] == player) {
+        dtask[i] = 0;
+        problem[i] = 0;
       }
     }
-    daiceme = 0;
     insert();
   }
 
@@ -266,8 +266,15 @@ function event(c) {
   }
 
   if (c == 7) {
+    for (let i = 1; i < 11; i++) {
+      if (problem[i] > 0) {
+        problem[i] = 0;
+        break;
+      }
+    }
+    insert();
+    }
 
-  }
 
   if (c == 8) {
     daiceme = daiceme / 2;
