@@ -8,6 +8,7 @@ let cf = 0; //チャンスカードを引いているか判断
 let sf = 0; //solutionを試みようとしているかの判断
 let select = 0; //選択されているストーリー
 let doing = 0; //doingにあるストーリーの数
+let ready = 0;//readyにあるストーリーの数
 let done = 0; //doneにあるストーリーの数
 let amari = 0; //タスクを減らしたときのあまり
 let player = 1; //プレイヤー
@@ -80,12 +81,21 @@ function insert() {
 //doingにあるストーリーの数を数える
 function status() {
   doing = 0;
+  ready = 0;
   for (let i = 1; i < 11; i++) {
     if (taskarea[i] == 2) {
       doing++;
     }
   }
+  for (let i = 1; i < 11; i++) {
+    if (taskarea[i] == 4) {
+      ready++;
+    }
+  }
 }
+
+
+
 
 
 //ダイスの画像とチャンスカードの画像をデフォルトに戻す"
