@@ -2,6 +2,8 @@ let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
 let task = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //ストーリーのタスク
 let taskmax = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //タスクの初期値
+let rtask = [0, 8, 10, 9, 8, 5, 14, 12, 8, 22, 7];
+let dtask = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14];
 let taskarea = [0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //タスクがある場所
 let df = 0; //ダイスをこのターン振っているか判断
 let cf = 0; //チャンスカードを引いているか判断
@@ -16,6 +18,7 @@ let count = 0; //ターン経過数
 let snum = [0, 0, 0, 0, 0]; //player毎のsolutionカードの所持数
 let problem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //problemが発生してるかどうか
 let res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
+let readygo = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];//readyでの作業が終わっているか
 let drag = 0; //ドラッグしているストーリーの番号
 let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザが満足していないように思われる。"];
 let round = 1; //ラウンド数を数える
@@ -30,6 +33,12 @@ function insert() {
   for (let i = 1; i < 11; i++) {
     if (task[i] < 0) {
       task[i] = 0;
+    }
+    if (rtask[i] < 0) {
+      rtask[i] = 0;
+    }
+    if (dtask[i] < 0) {
+      dtask[i] = 0;
     }
   }
   document.getElementById("card1").innerHTML = "<br>画面のデザイン・作成<br>";
@@ -73,7 +82,10 @@ function insert() {
     }
   }
   for (let i = 1; i < 11; i++) {
-    document.getElementById("kosu" + i).innerHTML = task[i];
+    task[i]= rtask[i]+dtask[i];
+  }
+  for (let i = 1; i < 11; i++) {
+    document.getElementById("kosu" + i).innerHTML = task[i] +"("+rtask[i]+"+"+dtask[i]+")";
   }
 }
 
@@ -119,15 +131,15 @@ function daice(e) {
 
   if (select == 0) {
     document.getElementById("log").innerHTML = 'storyを選択してください';
-  } else if (taskarea[select] != 2) {
-    document.getElementById("log").innerHTML = 'doingにあるストーリーを<br>選択してください';
+  } else if (taskarea[select] == 1 || taskarea[select] == 3) {
+    document.getElementById("log").innerHTML = 'readyかdoingにあるストーリーを<br>選択してください';
   } else if (df == 0) {
     df = 1;
     clikc();
     ring();
     status();
-    if (doing == 0) {
-      document.getElementById("log").innerHTML = "storyをDoingに移動してください";
+    if (doing == 0 &&ready ==0) {
+      document.getElementById("log").innerHTML = "storyを作業する場所に移動してください";
       df = 0;
     } else {
       let daice = Math.floor(Math.random() * 6) + 1;
@@ -164,14 +176,14 @@ function clikc() {
 
 //ストーリーを選択したときの画像変更
 function sentaku(z) { //ｚ＝ストーリーの番号
-for (let i = 1; i < 11; i++) {
+for (let i = 1; i < 11; i++) {//担当なしを白に担当アリは担当の色に変える
 if(res[i] == 0){
   document.getElementById("task" + i).className = "note";
 }else{
   document.getElementById("task" + i).className = "player" + res[i] + "-note";
 }
 }
-if(res[z] ==0){
+if(res[z] ==0){//クリックしたタスクが担当なしなら色なしで表示する
   for (let i = 1; i <= $ninzu; i++) {
     if (player == i) {
       document.getElementById("task" + z).className = "noplayer" + i + "-note";
@@ -191,8 +203,8 @@ function chance() {
   }
   if (df == 0) {
     document.getElementById("log").innerHTML = '先にダイスを振りましょう';
-  } else if (taskarea[select] != 2) {
-    document.getElementById("log").innerHTML = 'doingにあるストーリーを<br>選択してください';
+  } else if (taskarea[select] == 1 || taskarea[select] == 3) {
+    document.getElementById("log").innerHTML = '作業中のストーリーを<br>選択してください';
   } else if (cf == 0) {
     let ck = Math.floor(Math.random() * 3) + 1;
     if (ck == 1) {
@@ -383,6 +395,36 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
     }
   }
 
+  if(num ==4){
+    if (rtask[select] <= 0) {
+      window.alert(name + 'は準備完了です。doingに移ってください');
+      sentaku(select);
+    } else {
+      sound();
+      amari = daiceme - rtask[select];
+      rtask[select] = rtask[select] - daiceme;
+      daiceme = 0;
+
+      if (rtask[select] > 0) {
+        sentaku(select);
+      } else {
+        window.alert(name + 'は準備完了です。doingに移ってください');
+
+        sentaku(select);
+        status();
+        if (ready > 1) {
+          daiceme = amari;
+        }
+      }
+    }
+
+  }
+
+
+
+
+
+
   if (num == 2) {
 
    if(res[select]>0 && res[select] != player){
@@ -390,20 +432,20 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
      return 0;
    }
 
-    if (task[select] <= 0) {
+    if (dtask[select] <= 0) {
       window.alert(name + 'はDoneです.Doneに移動させてください');
       sentaku(select);
     } else {
       sound();
-      amari = daiceme - task[select];
-      task[select] = task[select] - daiceme;
+      amari = daiceme - dtask[select];
+      dtask[select] = dtask[select] - daiceme;
       daiceme = 0;
 
       if(res[select] == 0){
         res[select] =player;
       }
 
-      if (task[select] > 0) {
+      if (dtask[select] > 0) {
         sentaku(select);
       } else {
         window.alert('お疲れ様です.' + name + 'をDoneに移動しましょう');
