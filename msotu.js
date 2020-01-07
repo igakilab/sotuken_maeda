@@ -16,7 +16,7 @@ let snum = [0, 0, 0, 0, 0]; //player毎のsolutionカードの所持数
 let problem = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //problemが発生してるかどうか
 let res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
 let drag = 0; //ドラッグしているストーリーの番号
-let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザーが満足していないように思われる。"];
+let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザが満足していないように思われる。"];
 let round = 1; //ラウンド数を数える
 
 function shuffle() {
@@ -31,16 +31,16 @@ function insert() {
       task[i] = 0;
     }
   }
-  document.getElementById("card1").innerHTML = "画面のデザイン・作成<br>";
-  document.getElementById("card2").innerHTML = "ユーザアカウントの作成・ログイン機能の開発<br>";
-  document.getElementById("card3").innerHTML = "動画アップロード機能の開発<br>";
-  document.getElementById("card4").innerHTML = "動画を検索する機能の開発<br>";
-  document.getElementById("card5").innerHTML = "動画を評価する機能の開発<br>";
-  document.getElementById("card6").innerHTML = "ユーザーと配信者のコミュニケーション機能の開発<br>";
-  document.getElementById("card7").innerHTML = "課金システムの開発<br>";
-  document.getElementById("card8").innerHTML = "オンライン機能の開発<br>";
-  document.getElementById("card9").innerHTML = "セキュリティの検討・設計<br>";
-  document.getElementById("card10").innerHTML = "全体のテスト・修正<br>";
+  document.getElementById("card1").innerHTML = "<br>画面のデザイン・作成<br>";
+  document.getElementById("card2").innerHTML = "<br>ユーザアカウントの作成・ログイン機能の開発<br>";
+  document.getElementById("card3").innerHTML = "<br>動画アップロード機能の開発<br>";
+  document.getElementById("card4").innerHTML = "<br>動画を検索する機能の開発<br>";
+  document.getElementById("card5").innerHTML = "<br>動画を評価する機能の開発<br>";
+  document.getElementById("card6").innerHTML = "<br>ユーザと配信者のコミュニケーション機能の開発<br>";
+  document.getElementById("card7").innerHTML = "<br>課金システムの開発<br>";
+  document.getElementById("card8").innerHTML = "<br>オンライン機能の開発<br>";
+  document.getElementById("card9").innerHTML = "<br>セキュリティの検討・設計<br>";
+  document.getElementById("card10").innerHTML = "<br>全体のテスト・修正<br>";
 
 
   for (let j = 1; j < 11; j++) {
