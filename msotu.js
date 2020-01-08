@@ -1,7 +1,7 @@
 let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
 let task = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //ストーリーのタスク
-let taskmax = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //タスクの初期値
+let taskmax = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14]; //タスクの初期値
 let rtask = [0, 8, 10, 9, 8, 5, 14, 12, 8, 22, 7];//redyのタスク残量
 let dtask = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14];//doingのタスク残量
 let taskarea = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //タスクがある場所
@@ -208,7 +208,7 @@ function chance() {
   } else if (cf == 0) {
     let ck = Math.floor(Math.random() * 3) + 1;
     if (ck == 1) {
-      let chance = Math.floor(Math.random() * 8) + 1;
+      let chance = Math.floor(Math.random() * 9) + 1;
       document.images['card'].src = "e" + chance + ".jpg"
       event(chance);
     }
@@ -234,15 +234,14 @@ function event(c) {
   }
 
   if (c == 2) {
-    clikc();
-    clikc();
+    daiceme = daiceme + 2;
   }
 
   if (c == 3) {
     window.alert("doingにあるストーリーのタスクが元に戻ってしまった！！")
     for (let i = 1; i < 11; i++) {
       if (taskarea[i] == 2) {
-        task[i] = taskmax[i];
+        dtask[i] = taskmax[i];
       }
     }
     insert();
@@ -250,9 +249,10 @@ function event(c) {
 
   if (c == 4) {
     for (let i = 1; i < 11; i++) {
-      if (res[i] == player) {
+      if (taskarea[i] == 2) {
         dtask[i] = 0;
         problem[i] = 0;
+        break;
       }
     }
     insert();
@@ -280,6 +280,10 @@ function event(c) {
   if (c == 8) {
     daiceme = daiceme / 2;
   }
+  if (c == 9) {
+    daiceme = daiceme + 4;
+  }
+
 }
 
 //solutionを引いたときの処理
