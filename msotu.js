@@ -277,12 +277,10 @@ function event(c) {
     }
 
 
-  if (c == 8) {
+  if (c <= 8) {
     daiceme = daiceme / 2;
   }
-  if (c == 9) {
-    daiceme = daiceme + 4;
-  }
+
 
 }
 
