@@ -7,6 +7,8 @@
   <title>ゲーム画面</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.1.4/Chart.min.js"></script>
+
   <script type="text/javascript" src="msotu.js"></script>
 </head>
 
@@ -64,6 +66,17 @@
 
 
   </div>
+
+  <div class="Ready" id=droparea4>
+    <div class="dai"><br>
+      <p>
+        <font size="7">
+          <center>Ready</center>
+        </font>
+      </p><br>
+    </div>
+  </div>
+
   <div class=" Doing" id=droparea2>
     <div class="dai"><br>
       <p>
@@ -103,6 +116,7 @@
   <audio id="stbgm" preload="auto" autoplay loop>
     <source src="stbgm.mp3" type="audio/mp3">
   </audio>
+  <canvas class="canvas" id="myChart"></canvas>
 </body>
 
 </html>
@@ -121,6 +135,7 @@
   let area1 = document.getElementById("droparea1");
   let area2 = document.getElementById("droparea2");
   let area3 = document.getElementById("droparea3");
+  let area4 = document.getElementById("droparea4");
 
   //ドラッグ開始時の処理
   task1.addEventListener("dragstart", function (evt) {
@@ -272,4 +287,29 @@
   area3.addEventListener("dragover", function (evt) {
     evt.preventDefault();
   }, false);
+
+
+  area4.addEventListener("drop", function (evt) {
+    drag = 0;
+    status();
+    if(ready<$ninzu){
+    //id名をdataTransferから取り出す
+    let id = evt.dataTransfer.getData("text/html");
+
+    let obj4 = document.getElementById(id);
+    if (obj4) {
+      area4.appendChild(obj4);  //要素を移動する
+      drop(4,id);
+    }
+
+    evt.preventDefault();
+  }}, false);
+
+  area4.addEventListener("dragenter", function (evt) {
+    evt.preventDefault();
+  }, false);
+  area4.addEventListener("dragover", function (evt) {
+    evt.preventDefault();
+  }, false);
+
 </script>

@@ -19,6 +19,21 @@ height: 100px;
     padding: 0;
 }
 
+.Ready{float: left;
+     width:100%;
+     height:100px;
+     padding: 0.5em 1em;
+    margin: 2em 0;
+    font-weight: bold;
+    border: solid 3px #000000;
+}
+
+.Ready p {
+    margin: 0;
+    padding: 0;
+}
+
+
 
 .Doing{float: left;
      width:100%;
@@ -59,9 +74,16 @@ height: 100px;
   background-color:#FFDDFF
 }
 
+.Ready{
+  float: left;
+  width:15%;
+  height:800px;
+  background-color:#CCFFCC
+}
+
 .Doing{
   float: left;
-  width:31%;
+  width:16%;
   height:800px;
   background-color:#CCFFFF
 }
@@ -91,7 +113,7 @@ height: 100px;
 .card{
   position: absolute;
   right: 45%;
-  bottom: 175px;
+  bottom: 160px;
   cursor: pointer;
 }
 
@@ -152,8 +174,8 @@ font-size:60px;
 /*ストーリーの見た目 */
 .note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -204,8 +226,8 @@ font-size:60px;
 
 .noplayer1-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -256,8 +278,8 @@ font-size:60px;
 
 .noplayer2-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -307,8 +329,8 @@ font-size:60px;
 
 .noplayer3-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -358,8 +380,8 @@ font-size:60px;
  
  .noplayer4-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -415,8 +437,8 @@ font-size:60px;
 
 .player1-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -467,8 +489,8 @@ font-size:60px;
 
 .player2-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -518,8 +540,8 @@ font-size:60px;
 
 .player3-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -569,8 +591,8 @@ font-size:60px;
  
  .player4-note {
     float: left;
-    width: 28%;
-    min-height: 120px;
+    width: 230px;
+    min-height: 110px;
     margin: 25px auto;
     padding: 15px;
     background: #f1f3a2;
@@ -628,3 +650,7 @@ font-size:60px;
     font-size:25px;
 }
 
+.canvas{
+
+position: absolute;
+}
