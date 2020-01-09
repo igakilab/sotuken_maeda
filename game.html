@@ -4,6 +4,8 @@
 <head>
   <meta charset="utf-8">
   <link rel="stylesheet" href="stposition.css" type="text/css">
+  <link type="text/css" href="http://mbostock.github.io/d3/style.css" rel="stylesheet" />
+  <link type="text/css" href="example.css" rel="stylesheet" />
   <title>ゲーム画面</title>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
@@ -102,6 +104,7 @@
   <audio id="clikcsound" preload="auto">
     <source src="sound.mp3" type="audio/wav">
   </audio>
+  <div>
   <span><img src="6d.gif" id="dice" class="dice" onclick="daice();" alt="" name="dice"></span>
   <span><img src="6d.gif" id="dice1" class="dice1" onclick="daice();" alt="" name="dice1"></span>
   <span><img src="card.png" id="card" class="card" onclick="chance();" width="300" height="200" name="card"></span>
@@ -111,12 +114,18 @@
 
   <p class="log"><span id="log">ログ</span></p>
   <button class="end" type="button" onclick="end();">end</button>
-  <button class="sbutton" type="button" onclick="solutionevent();">solution</button>
+  <button class="sbutton" type="button" onclick="solutionevent();example();">solution</button>
   <p class="player"><span id="player">player1の番です</span></p>
   <audio id="stbgm" preload="auto" autoplay loop>
     <source src="stbgm.mp3" type="audio/mp3">
   </audio>
-  <canvas class="canvas" id="myChart"></canvas>
+</div>
+  <canvas class="canvas" id="myChart" height="100"></canvas>
+
+
+  <script type="text/javascript" src="d3.v3.min.js"></script>
+  <script type="text/javascript" src="gantt-chart-d3.js"></script>
+  <script type="text/javascript" src="example.js"></script>
 </body>
 
 </html>
