@@ -21,7 +21,9 @@ let res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
 let drag = 0; //ドラッグしているストーリーの番号
 let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザが満足していないように思われる。"];
 let round = 1; //ラウンド数を数える
-let log = [311,0,0,0,0,0,0,0,0,0,0,0,0];
+let log = [311,0,0,0,0,0,0,0,0,0,0,0,0];//バーンダウンチャート用データ保存区域
+let ganttst = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];//ガントチャート用始点データ
+let gantten = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];//ガントチャート用終点データ
 
 function shuffle() {
   let urlparams = new URLSearchParams(window.location.search);
@@ -252,6 +254,7 @@ function event(c) {
       if (taskarea[i] == 2) {
         dtask[i] = 0;
         problem[i] = 0;
+        gantten[i] = round+1;
         break;
       }
     }
@@ -277,7 +280,7 @@ function event(c) {
     }
 
 
-  if (c <= 8) {
+  if (c >= 8) {
     daiceme = daiceme / 2;
   }
 
@@ -409,6 +412,11 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
 
 
   if(num ==4){
+
+    if(ganttst[select] == 0){
+      ganttst[select] =round;
+    }
+
     if (rtask[select] <= 0) {
       window.alert(name + 'は準備完了です。doingに移ってください');
       sentaku(select);
@@ -465,7 +473,7 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
         sentaku(select);
       } else {
         window.alert('お疲れ様です.' + name + 'をDoneに移動しましょう');
-
+        gantten[select] = round+1;
         sentaku(select);
         status();
         if (doing > 1) {
@@ -514,7 +522,7 @@ function finish() { //全タスク終了時
 
 function finishtxt() { //ゲーム終了時の文章表示
   window.alert("お疲れ様ゲーム終了です");
-
+  example();
   let ctx = document.getElementById('myChart').getContext('2d');
   let myChart = new Chart(ctx, {
   type: 'line',
@@ -530,7 +538,8 @@ function finishtxt() { //ゲーム終了時の文章表示
     data:[311,log[1],log[2],log[3],log[4],log[5],log[6],log[7],log[8],log[9],log[10],log[11],log[12]],
     backgroundColor:"rgba(255,153,0,0.4)"
   }]
-  }
+},
+
   });
 }
 
@@ -545,16 +554,16 @@ function sum(roubd) {
 function example() {
 
 var tasks = [
-{"startDate":new Date("2015/01/01 "),"endDate":new Date("2015/01/02 "),"taskName":"story1","status":"RUNNING"},
-{"startDate":new Date("2015/01/02 "),"endDate":new Date("2015/01/03 "),"taskName":"story2","status":"RUNNING"},
-{"startDate":new Date("2015/01/03 "),"endDate":new Date("2015/01/04 "),"taskName":"story3","status":"RUNNING"},
-{"startDate":new Date("2015/01/04 "),"endDate":new Date("2015/01/05 "),"taskName":"story4","status":"RUNNING"},
-{"startDate":new Date("2015/01/05 "),"endDate":new Date("2015/01/06 "),"taskName":"story5","status":"RUNNING"},
-{"startDate":new Date("2015/01/06 "),"endDate":new Date("2015/01/07 "),"taskName":"story6","status":"RUNNING"},
-{"startDate":new Date("2015/01/07 "),"endDate":new Date("2015/01/08 "),"taskName":"story7","status":"RUNNING"},
-{"startDate":new Date("2015/01/08 "),"endDate":new Date("2015/01/09 "),"taskName":"story8","status":"RUNNING"},
-{"startDate":new Date("2015/01/09 "),"endDate":new Date("2015/01/10 "),"taskName":"story9","status":"RUNNING"},
-{"startDate":new Date("2015/01/10 "),"endDate":new Date("2015/01/11 "),"taskName":"story10","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[1]),"endDate":new Date("2015/01/"+gantten[1]),"taskName":"story1","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[2]),"endDate":new Date("2015/01/"+gantten[2]),"taskName":"story2","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[3]),"endDate":new Date("2015/01/"+gantten[3]),"taskName":"story3","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[4]),"endDate":new Date("2015/01/"+gantten[4]),"taskName":"story4","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[5]),"endDate":new Date("2015/01/"+gantten[5]),"taskName":"story5","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[6]),"endDate":new Date("2015/01/"+gantten[6]),"taskName":"story6","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[7]),"endDate":new Date("2015/01/"+gantten[7]),"taskName":"story7","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[8]),"endDate":new Date("2015/01/"+gantten[8]),"taskName":"story8","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[9]),"endDate":new Date("2015/01/"+gantten[9]),"taskName":"story9","status":"RUNNING"},
+{"startDate":new Date("2015/01/"+ganttst[10]),"endDate":new Date("2015/01/"+gantten[10]),"taskName":"story10","status":"RUNNING"},
 ];
 
 var taskStatus = {
