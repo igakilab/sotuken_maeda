@@ -2,15 +2,15 @@ let clik = 0; //クリック総数
 let daiceme = 0; //ダイスの目
 let task = [0, 23, 30, 27, 24, 16, 43, 36, 24, 68, 21]; //ストーリーのタスク
 let taskmax = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14]; //タスクの初期値
-let rtask = [0, 8, 10, 9, 8, 5, 14, 12, 8, 22, 7];//redyのタスク残量
-let dtask = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14];//doingのタスク残量
+let rtask = [0, 8, 10, 9, 8, 5, 14, 12, 8, 22, 7]; //redyのタスク残量
+let dtask = [0, 15, 20, 18, 16, 11, 29, 24, 16, 45, 14]; //doingのタスク残量
 let taskarea = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //タスクがある場所
 let df = 0; //ダイスをこのターン振っているか判断
 let cf = 0; //チャンスカードを引いているか判断
 let sf = 0; //solutionを試みようとしているかの判断
 let select = 0; //選択されているストーリー
 let doing = 0; //doingにあるストーリーの数
-let ready = 0;//readyにあるストーリーの数
+let ready = 0; //readyにあるストーリーの数
 let done = 0; //doneにあるストーリーの数
 let amari = 0; //タスクを減らしたときのあまり
 let player = 1; //プレイヤー
@@ -21,9 +21,10 @@ let res = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //誰が担当しているか
 let drag = 0; //ドラッグしているストーリーの番号
 let psen = [0, "技術的障害に遭遇した。", "品質が不十分なため作業が進められない。", "このタスクをこなすにはスキル不足である。", "他部署とコミュニケーションが十分にできない。", "作業に計画以上のコストがかかる。", "テストがうまくできない。", "仕様が不明確で困る。", "ユーザが満足していないように思われる。"];
 let round = 1; //ラウンド数を数える
-let log = [311,0,0,0,0,0,0,0,0,0,0,0,0];//バーンダウンチャート用データ保存区域
-let ganttst = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];//ガントチャート用始点データ
-let gantten = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];//ガントチャート用終点データ
+let log = [311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //バーンダウンチャート用データ保存区域
+let ganttst = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //ガントチャート用始点データ
+let gantten = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //ガントチャート用終点データ
+let pnum = 0;//problemの数
 
 function shuffle() {
   let urlparams = new URLSearchParams(window.location.search);
@@ -84,10 +85,10 @@ function insert() {
     }
   }
   for (let i = 1; i < 11; i++) {
-    task[i]= rtask[i]+dtask[i];
+    task[i] = rtask[i] + dtask[i];
   }
   for (let i = 1; i < 11; i++) {
-    document.getElementById("kosu" + i).innerHTML = task[i] +"("+rtask[i]+"+"+dtask[i]+")";
+    document.getElementById("kosu" + i).innerHTML = task[i] + "(" + rtask[i] + "+" + dtask[i] + ")";
   }
 }
 
@@ -140,7 +141,7 @@ function daice(e) {
     clikc();
     ring();
     status();
-    if (doing == 0 &&ready ==0) {
+    if (doing == 0 && ready == 0) {
       document.getElementById("log").innerHTML = "storyを作業する場所に移動してください";
       df = 0;
     } else {
@@ -178,20 +179,20 @@ function clikc() {
 
 //ストーリーを選択したときの画像変更
 function sentaku(z) { //ｚ＝ストーリーの番号
-for (let i = 1; i < 11; i++) {//担当なしを白に担当アリは担当の色に変える
-if(res[i] == 0){
-  document.getElementById("task" + i).className = "note";
-}else{
-  document.getElementById("task" + i).className = "player" + res[i] + "-note";
-}
-}
-if(res[z] ==0){//クリックしたタスクが担当なしなら色なしで表示する
-  for (let i = 1; i <= $ninzu; i++) {
-    if (player == i) {
-      document.getElementById("task" + z).className = "noplayer" + i + "-note";
+  for (let i = 1; i < 11; i++) { //担当なしを白に担当アリは担当の色に変える
+    if (res[i] == 0) {
+      document.getElementById("task" + i).className = "note";
+    } else {
+      document.getElementById("task" + i).className = "player" + res[i] + "-note";
     }
   }
-}
+  if (res[z] == 0) { //クリックしたタスクが担当なしなら色なしで表示する
+    for (let i = 1; i <= $ninzu; i++) {
+      if (player == i) {
+        document.getElementById("task" + z).className = "noplayer" + i + "-note";
+      }
+    }
+  }
 }
 
 //チャンスカードのクリックしたときの動き
@@ -208,21 +209,37 @@ function chance() {
   } else if (taskarea[select] == 1 || taskarea[select] == 3) {
     document.getElementById("log").innerHTML = '作業中のストーリーを<br>選択してください';
   } else if (cf == 0) {
-    let ck = Math.floor(Math.random() * 3) + 1;
-    if (ck == 1) {
+    let ck = Math.floor(Math.random() * (27-pnum)) + 1;
+    if (ck <= 9) {
       let chance = Math.floor(Math.random() * 9) + 1;
       document.images['card'].src = "e" + chance + ".jpg"
       event(chance);
     }
-    if (ck == 2) {
-      let chance = Math.floor(Math.random() * 8) + 1;
-      document.images['card'].src = "p" + chance + ".jpg"
-      problemevent(chance);
-    }
-    if (ck == 3) {
+    if (ck >= 10 && ck <= 19) {
       let chance = Math.floor(Math.random() * 10) + 1;
       document.images['card'].src = "k0.jpg"
       solutioncount();
+    }
+    if (ck >= 20) {
+      let chance = Math.floor(Math.random() * 8) + 1;
+
+      for(let i = 1; i < 11; i++){
+        if(problem[i] == chance){
+          chance = 1;
+          break;
+        }
+      }
+
+      for(let i = 1; i < 11; i++){
+        if(problem[i] == chance){
+          i = 1;
+          chance += 1;
+        }
+      }
+
+      document.images['card'].src = "p" + chance + ".jpg"
+      problemevent(chance);
+      pnum += 1;
     }
     cf = 1;
   }
@@ -254,7 +271,7 @@ function event(c) {
       if (taskarea[i] == 2) {
         dtask[i] = 0;
         problem[i] = 0;
-        gantten[i] = round+1;
+        gantten[i] = round + 1;
         break;
       }
     }
@@ -273,11 +290,12 @@ function event(c) {
     for (let i = 1; i < 11; i++) {
       if (problem[i] > 0) {
         problem[i] = 0;
+        pnum -= 1;
         break;
       }
     }
     insert();
-    }
+  }
 
 
   if (c >= 8) {
@@ -382,6 +400,7 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
         snum[player] = snum[player] - 2;
         solutioncount();
         document.getElementById("log").innerHTML = 'problemは解決されました';
+        pnum -= 1;
       } else {
         document.getElementById("log").innerHTML = '残念。別の解決策を考えましょう';
         sf = 2;
@@ -411,10 +430,10 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
 
 
 
-  if(num ==4){
+  if (num == 4) {
 
-    if(ganttst[select] == 0){
-      ganttst[select] =round;
+    if (ganttst[select] == 0) {
+      ganttst[select] = round;
     }
 
     if (rtask[select] <= 0) {
@@ -433,9 +452,9 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
 
         sentaku(select);
         status();
-        if (ready > 1) {
+        /*if (ready > 1) {
           daiceme = amari;
-        }
+        }*/
       }
     }
 
@@ -446,15 +465,15 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
 
   if (num == 2) {
 
-   if(res[select]>0 && res[select] != player){
-     window.alert('担当ではないため出目を半分にして作業します');
-     daiceme /= 2;
-   }
+    if (res[select] > 0 && res[select] != player) {
+      window.alert('担当ではないため出目を半分にして作業します');
+      daiceme /= 2;
+    }
 
-   if(rtask[select]>0){
-     window.alert('先に準備しましょう');
-     return 0;
-   }
+    if (rtask[select] > 0) {
+      window.alert('先に準備しましょう');
+      return 0;
+    }
 
     if (dtask[select] <= 0) {
       window.alert(name + 'はDoneです.Doneに移動させてください');
@@ -465,20 +484,20 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
       dtask[select] = dtask[select] - daiceme;
       daiceme = 0;
 
-      if(res[select] == 0){
-        res[select] =player;
+      if (res[select] == 0) {
+        res[select] = player;
       }
 
       if (dtask[select] > 0) {
         sentaku(select);
       } else {
         window.alert('お疲れ様です.' + name + 'をDoneに移動しましょう');
-        gantten[select] = round+1;
+        gantten[select] = round + 1;
         sentaku(select);
         status();
-        if (doing > 1) {
+        /*if (doing > 1) {
           daiceme = amari;
-        }
+        }*/
       }
     }
   }
@@ -525,26 +544,27 @@ function finishtxt() { //ゲーム終了時の文章表示
   example();
   let ctx = document.getElementById('myChart').getContext('2d');
   let myChart = new Chart(ctx, {
-  type: 'line',
-  data: {
-    labels:['0','1','2','3','4','5','6','7','8','9','10','11','12'],
-    datasets:[{
-      label:'ave',
-      data:[311,285,259,233,207,181,155,129,103,77,51,25,0],
-      backgroundColor:"rgba(153,255,51,0.4)"
+    type: 'line',
+    data: {
+      labels: ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12'],
+      datasets: [{
+          label: 'ave',
+          data: [311, 285, 259, 233, 207, 181, 155, 129, 103, 77, 51, 25, 0],
+          backgroundColor: "rgba(153,255,51,0.4)"
+        },
+        {
+          label: 'log',
+          data: [311, log[1], log[2], log[3], log[4], log[5], log[6], log[7], log[8], log[9], log[10], log[11], log[12]],
+          backgroundColor: "rgba(255,153,0,0.4)"
+        }
+      ]
     },
-  {
-    label:'log',
-    data:[311,log[1],log[2],log[3],log[4],log[5],log[6],log[7],log[8],log[9],log[10],log[11],log[12]],
-    backgroundColor:"rgba(255,153,0,0.4)"
-  }]
-},
 
   });
 }
 
 function sum(roubd) {
-  for(let i =1;i < 11; i++){
+  for (let i = 1; i < 11; i++) {
     log[round] += task[i];
   }
 }
@@ -553,40 +573,89 @@ function sum(roubd) {
 
 function example() {
 
-var tasks = [
-{"startDate":new Date("2015/01/"+ganttst[1]),"endDate":new Date("2015/01/"+gantten[1]),"taskName":"story1","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[2]),"endDate":new Date("2015/01/"+gantten[2]),"taskName":"story2","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[3]),"endDate":new Date("2015/01/"+gantten[3]),"taskName":"story3","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[4]),"endDate":new Date("2015/01/"+gantten[4]),"taskName":"story4","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[5]),"endDate":new Date("2015/01/"+gantten[5]),"taskName":"story5","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[6]),"endDate":new Date("2015/01/"+gantten[6]),"taskName":"story6","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[7]),"endDate":new Date("2015/01/"+gantten[7]),"taskName":"story7","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[8]),"endDate":new Date("2015/01/"+gantten[8]),"taskName":"story8","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[9]),"endDate":new Date("2015/01/"+gantten[9]),"taskName":"story9","status":"RUNNING"},
-{"startDate":new Date("2015/01/"+ganttst[10]),"endDate":new Date("2015/01/"+gantten[10]),"taskName":"story10","status":"RUNNING"},
-];
+  var tasks = [{
+      "startDate": new Date("2015/01/" + ganttst[1]),
+      "endDate": new Date("2015/01/" + gantten[1]),
+      "taskName": "story1",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[2]),
+      "endDate": new Date("2015/01/" + gantten[2]),
+      "taskName": "story2",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[3]),
+      "endDate": new Date("2015/01/" + gantten[3]),
+      "taskName": "story3",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[4]),
+      "endDate": new Date("2015/01/" + gantten[4]),
+      "taskName": "story4",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[5]),
+      "endDate": new Date("2015/01/" + gantten[5]),
+      "taskName": "story5",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[6]),
+      "endDate": new Date("2015/01/" + gantten[6]),
+      "taskName": "story6",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[7]),
+      "endDate": new Date("2015/01/" + gantten[7]),
+      "taskName": "story7",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[8]),
+      "endDate": new Date("2015/01/" + gantten[8]),
+      "taskName": "story8",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[9]),
+      "endDate": new Date("2015/01/" + gantten[9]),
+      "taskName": "story9",
+      "status": "RUNNING"
+    },
+    {
+      "startDate": new Date("2015/01/" + ganttst[10]),
+      "endDate": new Date("2015/01/" + gantten[10]),
+      "taskName": "story10",
+      "status": "RUNNING"
+    },
+  ];
 
-var taskStatus = {
-    "SUCCEEDED" : "bar",
-    "FAILED" : "bar-failed",
-    "RUNNING" : "bar-running",
-    "KILLED" : "bar-killed"
-};
+  var taskStatus = {
+    "SUCCEEDED": "bar",
+    "FAILED": "bar-failed",
+    "RUNNING": "bar-running",
+    "KILLED": "bar-killed"
+  };
 
-var taskNames = [ "story1","story2","story3","story4","story5","story6","story7","story8","story9","story10" ];
+  var taskNames = ["story1", "story2", "story3", "story4", "story5", "story6", "story7", "story8", "story9", "story10"];
 
-tasks.sort(function(a, b) {
+  tasks.sort(function(a, b) {
     return a.endDate - b.endDate;
-});
-var maxDate = tasks[tasks.length - 1].endDate;
-tasks.sort(function(a, b) {
+  });
+  var maxDate = tasks[tasks.length - 1].endDate;
+  tasks.sort(function(a, b) {
     return a.startDate - b.startDate;
-});
-var minDate = tasks[0].startDate;
+  });
+  var minDate = tasks[0].startDate;
 
-var format = "%d";
+  var format = "%d";
 
-var gantt = d3.gantt().taskTypes(taskNames).taskStatus(taskStatus).tickFormat(format);
-gantt(tasks);
+  var gantt = d3.gantt().taskTypes(taskNames).taskStatus(taskStatus).tickFormat(format);
+  gantt(tasks);
 
 };
