@@ -432,7 +432,7 @@ function disp(num, max, name, s) { //num=taskarea[],max=taskmax[],name='タス�
 
   if (num == 4) {
 
-    if (ganttst[select] == 0) {
+    if (ganttst[select] == 1) {
       ganttst[select] = round;
     }
 
