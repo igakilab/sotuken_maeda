@@ -24,7 +24,7 @@ let round = 1; //ラウンド数を数える
 let log = [311, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]; //バーンダウンチャート用データ保存区域
 let ganttst = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //ガントチャート用始点データ
 let gantten = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //ガントチャート用終点データ
-let pnum = 0;//problemの数
+let pnum = 0; //problemの数
 
 function shuffle() {
   let urlparams = new URLSearchParams(window.location.search);
@@ -134,7 +134,7 @@ function daice(e) {
 
   if (select == 0) {
     document.getElementById("log").innerHTML = 'storyを選択してください';
-  } else if (taskarea[select] == 1 || taskarea[select] == 3) {
+  } else if (taskarea[select] == 1) {
     document.getElementById("log").innerHTML = 'readyかdoingにあるストーリーを<br>選択してください';
   } else if (df == 0) {
     df = 1;
@@ -206,10 +206,10 @@ function chance() {
   }
   if (df == 0) {
     document.getElementById("log").innerHTML = '先にダイスを振りましょう';
-  } else if (taskarea[select] == 1 || taskarea[select] == 3) {
+  } else if (taskarea[select] == 1) {
     document.getElementById("log").innerHTML = '作業中のストーリーを<br>選択してください';
   } else if (cf == 0) {
-    let ck = Math.floor(Math.random() * (27-pnum)) + 1;
+    let ck = Math.floor(Math.random() * (27 - pnum)) + 1;
     if (ck <= 9) {
       let chance = Math.floor(Math.random() * 9) + 1;
       document.images['card'].src = "e" + chance + ".jpg"
@@ -223,15 +223,15 @@ function chance() {
     if (ck >= 20) {
       let chance = Math.floor(Math.random() * 8) + 1;
 
-      for(let i = 1; i < 11; i++){
-        if(problem[i] == chance){
+      for (let i = 1; i < 11; i++) {
+        if (problem[i] == chance) {
           chance = 1;
           break;
         }
       }
 
-      for(let i = 1; i < 11; i++){
-        if(problem[i] == chance){
+      for (let i = 1; i < 11; i++) {
+        if (problem[i] == chance) {
           i = 1;
           chance += 1;
         }
