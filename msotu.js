@@ -134,7 +134,7 @@ function daice(e) {
 
   if (select == 0) {
     document.getElementById("log").innerHTML = 'storyを選択してください';
-  } else if (taskarea[select] == 1) {
+  } else if (taskarea[select] == 1 || taskarea[select] == 1) {
     document.getElementById("log").innerHTML = 'readyかdoingにあるストーリーを<br>選択してください';
   } else if (df == 0) {
     df = 1;
@@ -206,7 +206,9 @@ function chance() {
   }
   if (df == 0) {
     document.getElementById("log").innerHTML = '先にダイスを振りましょう';
-  } else if (taskarea[select] == 1) {
+  } else if (daiceme == 0) {
+    document.getElementById("log").innerHTML = '既に作業しています．<br>作業する前に引きましょう';
+  }else if (taskarea[select] == 1) {
     document.getElementById("log").innerHTML = '作業中のストーリーを<br>選択してください';
   } else if (cf == 0) {
     let ck = Math.floor(Math.random() * (27 - pnum)) + 1;
