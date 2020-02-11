@@ -1,6 +1,6 @@
-#デジタルカンバンゲーム「DKG」
+# デジタルカンバンゲーム「DKG」
 
-##準備
+## 準備
 
 - 「<https://github.com/igakilab/sotuken_maeda>」に移動しClone or download をクリック，Download ZIP を選択してファイルをダウンロード．
 - ダウンロードしたファイルを解凍，ファイルの中身の配置は変更しないこと．
